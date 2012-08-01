@@ -1,0 +1,3 @@
+# ~/.inputrc
+# ignore case sensitivity when using tab-complete
+set completion-ignore-case On
