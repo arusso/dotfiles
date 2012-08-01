@@ -39,6 +39,12 @@ hourglass(){ trap 'tput cnorm' EXIT INT;local s=$(($SECONDS +$1));(tput civis;wh
 # and display the results locally.
 runon() { CLIENT=$1; COMMAND=$2; if [[ "$1" == "" || "$2" == "" ]]; then echo "USAGE: $0 <client> \"<command>\""; else ssh -a -T ${CLIENT} "$2"; fi }
 
+# ff/ffs functions
+# finds files of size $1 or greater.  Useful for tracking down fat files.
+# ffs version runs sudo first.
+ff() { find . -size +${1} -print0 | xargs -0 du -h; }
+ffs() { sudo ff ${1}; }
+
 # Lastly, lets import our 'private' definitions.  If items are redefined
 # likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
 . ~/.bashrc.private
