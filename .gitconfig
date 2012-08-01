@@ -1,0 +1,9 @@
+[user]
+	name = Aaron Russo
+    email = aaron.n.russo@gmail.com
+
+[alias]
+        co = checkout
+        br = branch
+        hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
+        unstage = reset HEAD
