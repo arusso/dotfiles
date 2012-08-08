@@ -4,6 +4,13 @@
 
 [alias]
         co = checkout
+	ci = commit
         br = branch
         hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
         unstage = reset HEAD
+	st = status
+	log = log -p
+	df = diff
+	bl = blame
+	gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
