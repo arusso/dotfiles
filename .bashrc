@@ -26,6 +26,7 @@ if [[ "$PLATFORM"  == "OSX" ]]; then
     alias docs='cd ~/Documents'
     alias lsusb='system_profiler SPUSBDataType' # list usb devices
     alias mygit='docs; cd git'
+    export LC_ALL="en_US.UTF-8"
 fi
 
 # exports
@@ -44,6 +45,10 @@ runon() { CLIENT=$1; COMMAND=$2; if [[ "$1" == "" || "$2" == "" ]]; then echo "U
 # ffs version runs sudo first.
 ff() { find . -size +${1} -print0 | xargs -0 du -h; }
 ffs() { sudo ff ${1}; }
+
+# generates 30 character passwords with a few keystrokes of input used as
+# data entropy
+newpass() { read -s pass; echo $pass $(date) | shasum -a 512 | base64 | cut -c -30; }
 
 # Lastly, lets import our 'private' definitions.  If items are redefined
 # likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
