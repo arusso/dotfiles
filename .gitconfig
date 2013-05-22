@@ -3,11 +3,17 @@
   email = arusso@berkeley.edu 
 
 [alias]
-  co = checkout
+  bl = blame
   br = branch
-  hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
-  unstage = reset HEAD
   ci = commit
+  co = checkout
   cob = checkout -b
-  st = status
   df = diff -b
+  hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
+  gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  log = log -p
+  st = status
+  unstage = reset HEAD
+  ungit = rm --cached
+  up = branch --set-upstream

@@ -46,9 +46,17 @@ runon() { CLIENT=$1; COMMAND=$2; if [[ "$1" == "" || "$2" == "" ]]; then echo "U
 ff() { find . -size +${1} -print0 | xargs -0 du -h; }
 ffs() { sudo ff ${1}; }
 
-newpass() { read -s pass; echo $pass $(date) | shasum -a 512 | base64 | cut -c -30; }
-
 assdiff() { diff <(ssh $2 "sudo cat $1") <(ssh $3 "sudo cat $1"); }
+
+if [[ "$PLATFORM"  == "OSX" ]]; then
+  BASE64_BREAK="--break=0"
+elif [[ "$PLATFORM" == "Linux" ]]; then
+  BASE64_BREAK="-w 0"
+else
+  BASE64_BREAK=
+fi
+
+newpass() { read -s pass; echo $pass $(date) | shasum -a 512 | base64 ${BASE64_BREAK} | cut -c -30; }
 
 # Lastly, lets import our 'private' definitions.  If items are redefined
 # likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
