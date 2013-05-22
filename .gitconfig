@@ -1,9 +1,13 @@
 [user]
-	name = Aaron Russo
-    email = aaron.n.russo@gmail.com
+  name = Aaron Russo
+  email = arusso@berkeley.edu 
 
 [alias]
-        co = checkout
-        br = branch
-        hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
-        unstage = reset HEAD
+  co = checkout
+  br = branch
+  hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
+  unstage = reset HEAD
+  ci = commit
+  cob = checkout -b
+  st = status
+  df = diff -b
