@@ -46,7 +46,13 @@ runon() { CLIENT=$1; COMMAND=$2; if [[ "$1" == "" || "$2" == "" ]]; then echo "U
 ff() { find . -size +${1} -print0 | xargs -0 du -h; }
 ffs() { sudo ff ${1}; }
 
-assdiff() { diff <(ssh $2 "sudo cat $1") <(ssh $3 "sudo cat $1"); }
+assdiff() {
+  if [[ "$1" == "" || "$2" == "" ]]; then
+    echo "usage: assdiff <filename> <host a> <host b>"
+  else
+    diff -u <(ssh $2 "sudo cat $1") <(ssh $3 "sudo cat $1")
+  fi
+}
 
 if [[ "$PLATFORM"  == "OSX" ]]; then
   BASE64_BREAK="--break=0"
