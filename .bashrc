@@ -97,3 +97,7 @@ ${GREP} -R ${REGEX} ${PUP_PATH}/* | ${AWK} '{ print $1 }' | ${SORT} -u | $SED "s
 }
 
 alias please='sudo !!'
+
+# Disable bash history for commands that begin with a space
+HISTCONTROL=ignorespace
+export HISTCONTROL
