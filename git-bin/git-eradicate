@@ -1,10 +1,15 @@
 #!/bin/bash
 #
+# git-eradicate:
+#
+# Provided a filepath, removes that file from the entire git repository,
+# re-writing history along the way.  Useful for taming large repositories. Use
+# with caution.
+#
 # code originally found at:
 # http://stackoverflow.com/questions/1029969/why-is-my-git-repository-so-big
 #
 # Modifications include a simple safety checks
-
 if [ "$1" == "" ]; then
   printf "usage:\n\tgit eradicate <filepath>\n\n"
   printf "Eradicates a file from the git repository.  Be sure to provide the"

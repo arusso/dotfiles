@@ -1,5 +1,11 @@
 #!/bin/sh
 #
+# git-fatfiles:
+#
+# Seeks out and prints file sizes for all files in your repository, past and
+# present.  Useful for finding large files in your repositories history.
+# Especially useful when used with git-eradicate.
+#
 # Code originally found:
 # http://stackoverflow.com/questions/1029969/why-is-my-git-repository-so-big
 git rev-list --all --objects | \
