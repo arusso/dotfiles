@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# code originally found at:
+# http://stackoverflow.com/questions/1029969/why-is-my-git-repository-so-big
+#
+# Modifications include a simple safety checks
+
+if [ "$1" == "" ]; then
+  printf "usage:\n\tgit eradicate <filepath>\n\n"
+  printf "Eradicates a file from the git repository.  Be sure to provide the"
+  printf "entire filepath\nand not just the filename!!!\n\n"
+  exit
+fi
+
+printf "You are about to eradicate: ${1}\n"
+printf "confirm [yN]: "
+
+read CONFIRM
+
+CONFIRM=$(printf $CONFIRM | tr [:lower:] [:upper:])
+
+if [ "$CONFIRM" != "Y" ]; then
+  exit
+fi
+
+git filter-branch -f  --index-filter \
+  "git rm --force --cached --ignore-unmatch ${1}" \
+  -- --all
+rm -Rf .git/refs/original && \
+  git reflog expire --expire=now --all && \
+  git gc --aggressive && \
+git prune
