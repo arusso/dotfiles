@@ -21,3 +21,5 @@
 # This section requires git 1.7.10.2 or greater.
 [include]
   path = cfg/local/.gitconfig
+[push]
+	default = current
