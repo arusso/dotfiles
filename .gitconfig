@@ -1,6 +1,5 @@
 [user]
   name = Aaron Russo
-  email = arusso@berkeley.edu 
 
 [alias]
   bl = blame
@@ -18,3 +17,7 @@
   unstage = reset HEAD
   ungit = rm --cached
   up = branch --set-upstream
+
+# This section requires git 1.7.10.2 or greater.
+[include]
+  path = cfg/local/.gitconfig
