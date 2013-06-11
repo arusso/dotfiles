@@ -1,5 +1,5 @@
 # This file is launched whenever a terminal is opened
-PATH=~/bin:/usr/local/bin:$PATH
+PATH=~/bin:$PATH
 
 # We'll create aliases and other functions that may be platform dependant
 # here well define and ENV variable to use for this purpose
