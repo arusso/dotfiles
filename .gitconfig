@@ -5,7 +5,8 @@
   bl = blame
   br = branch
   ci = commit
-  cs = commit -s
+  cs = commit -S
+  css = commit -S -s
   co = checkout
   cob = checkout -b
   df = diff -b
@@ -13,6 +14,7 @@
   gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   log = log -p
+  p = pull --ff
   st = status -s
   sub = submodule
   unstage = reset HEAD
