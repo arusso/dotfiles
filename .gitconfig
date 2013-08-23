@@ -5,6 +5,7 @@
   bl = blame
   br = branch
   ci = commit
+  cs = commit -s
   co = checkout
   cob = checkout -b
   df = diff -b
