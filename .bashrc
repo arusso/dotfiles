@@ -62,7 +62,14 @@ else
   BASE64_BREAK=
 fi
 
-newpass() { read -s pass; echo $pass $(date) | shasum -a 512 | base64 ${BASE64_BREAK} | cut -c -30; }
+newpass() {
+  OSSL=$(which openssl)
+  if [ -x $OSSL ]; then PASS=$($OSSL rand -base64 32); PASS=${PASS:0:24}; 
+  else
+    PASS=$(read -s salt; echo $salt $(date +%s) | shasum -a 512 | base64 ${BASE64_BREAK} | cut -c -24)
+  fi
+  echo $PASS
+}
 
 # Lastly, lets import our 'private' definitions.  If items are redefined
 # likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
