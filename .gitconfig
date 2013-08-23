@@ -12,14 +12,22 @@
   gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   log = log -p
-  st = status
+  st = status -s
   sub = submodule
   unstage = reset HEAD
   ungit = rm --cached
   up = branch --set-upstream
+  ts = tag -s
+  ta = tag
 
 # This section requires git 1.7.10.2 or greater.
 [include]
   path = cfg/local/.gitconfig
+
+# just push to the local branch
 [push]
-	default = current
+  default = current
+
+# disable ff merges by default
+[merge]
+  ff = false
