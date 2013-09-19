@@ -43,4 +43,6 @@ set modelines=4
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
+
 execute pathogen#infect()
