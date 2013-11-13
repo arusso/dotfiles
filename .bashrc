@@ -108,3 +108,7 @@ alias please='sudo !!'
 # Disable bash history for commands that begin with a space
 HISTCONTROL=ignorespace
 export HISTCONTROL
+
+# Set vmware_fusion as our default provider
+VAGRANT_DEFAULT_PROVIDER=vmware_fusion
+export VAGRANT_DEFAULT_PROVIDER
