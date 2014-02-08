@@ -1,0 +1,7 @@
+#!/bin/bash
+ # red
+
+ SESSION=$1
+
+ screen -S $SESSION -X caption always "%{= KW}%-w%{= Rk}%n %t%{-}%+w %-="
+ screen -S $SESSION -X hardstatus alwayslastline "%{= kW} %-= %{= kR}Session: %u%{= kW}%5\` | %{= kR}Host:%{= kW} %H | %{= kR} Uptime:%{= kW} %4\` | %{= kR} MEM:%{= kW} %2\`MB |%{= kR} SW: %{= kW}%3\`MB | %{= kR} DATE:%{= kW} %m/%d/%y %C %A"

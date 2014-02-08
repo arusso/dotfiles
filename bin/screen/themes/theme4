@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ # magenta
+
+ SESSION=$1
+
+ screen -S $SESSION -X caption always "%{= KW}%-w%{= mw}%n %t%{-}%+w %-="
+ screen -S $SESSION -X hardstatus alwayslastline "%{= kW} %-= %{= kM}Session: %u%{= kW}%5\` | %{= kM}Host:%{= kW} %H | %{= kM} Uptime:%{= kW} %4\` | %{= kM} MEM:%{= kW} %2\`MB |%{= kM} SW: %{= kW}%3\`MB | %{= kM} DATE:%{= kW} %m/%d/%y %C %A"
