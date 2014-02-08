@@ -77,10 +77,6 @@ newpass() {
   echo $PASS
 }
 
-# Lastly, lets import our 'private' definitions.  If items are redefined
-# likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
-. ~/.bashrc.private
-
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 alias v='vagrant'
 alias vd='vagrant destroy'
@@ -122,3 +118,7 @@ _complete_hosts () {
 }
 complete -F _complete_hosts ssh
 complete -F _complete_hosts host
+
+# Lastly, lets import our 'private' definitions.  If items are redefined
+# likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
+. ~/.bashrc.private
