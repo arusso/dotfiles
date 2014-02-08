@@ -82,33 +82,10 @@ newpass() {
 . ~/.bashrc.private
 
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
-
 alias v='vagrant'
 alias vd='vagrant destroy'
 alias vu='vagrant up'
 alias vs='vagrant ssh'
-
-function pup_uses() {
-REGEX=$1
-
-PUP_PATH=$2
-
-[[ "$PUP_PATH" = "" ]] && PUP_PATH="/Users/arusso/git/puppet/legacy"
-
-MYPATH=$(pwd)
-cd $PUP_PATH
-PUP_PATH=$(pwd)
-cd $MYPATH
-
-AWK=/usr/bin/awk
-SORT=/usr/bin/sort
-GREP=/usr/bin/grep
-SED=/usr/bin/sed
-
-SED_PATH=$(echo $PUP_PATH | ${SED} 's/\//\\\//g')
-${GREP} -R ${REGEX} ${PUP_PATH}/* | ${AWK} '{ print $1 }' | ${SORT} -u | $SED "s/${SED_PATH}\///g"
-}
-
 alias please='sudo !!'
 
 # Disable bash history for commands that begin with a space
@@ -123,6 +100,7 @@ function replace_text() {
     echo perl -pi -e $1 $2
   fi
 }
+
 # Autocomplete Hostnames for SSH etc.
 # by Jean-Sebastien Morisset (http://surniaulula.com/)
 _complete_hosts () {
