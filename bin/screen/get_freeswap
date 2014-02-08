@@ -1,2 +1,6 @@
 #!/bin/bash
-free -m | grep Swap | awk '{print $4}'
+if [[ "`uname`" == "Darwin" ]]; then
+  echo "-NA- "
+else
+  free -m | grep Swap | awk '{print $4}'
+fi
