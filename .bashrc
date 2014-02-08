@@ -1,5 +1,5 @@
 # This file is launched whenever a terminal is opened
-PATH=~/bin:$PATH
+PATH=~/bin:/usr/local/bin:$PATH
 
 # We'll create aliases and other functions that may be platform dependant
 # here well define and ENV variable to use for this purpose
@@ -109,6 +109,11 @@ alias please='sudo !!'
 HISTCONTROL=ignorespace
 export HISTCONTROL
 
-# Set vmware_fusion as our default provider
-VAGRANT_DEFAULT_PROVIDER=vmware_fusion
-export VAGRANT_DEFAULT_PROVIDER
+function replace_text() {
+  if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage:"
+    echo "  replace_text 's/OLDREGEX/NEWTEXT/g' FILEGLOB"
+  else
+    echo perl -pi -e $1 $2
+  fi
+}
