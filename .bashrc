@@ -46,9 +46,15 @@ runon() { CLIENT=$1; COMMAND=$2; if [[ "$1" == "" || "$2" == "" ]]; then echo "U
 ff() { find . -size +${1} -print0 | xargs -0 du -h; }
 ffs() { sudo ff ${1}; }
 
+# cool snippet a friend showed me. takes a diff of a file on two different
+# hosts, from this host.
 assdiff() {
   if [[ "$1" == "" || "$2" == "" ]]; then
     echo "usage: assdiff <filename> <host a> <host b>"
+    echo ""
+    echo "Example:"
+    echo "  Take a diff of /etc/hosts on hostA and hostB:"
+    echo "  $ assdiff /etc/hosts hostA hostB"
   else
     diff -u <(ssh $2 "sudo cat $1") <(ssh $3 "sudo cat $1")
   fi
