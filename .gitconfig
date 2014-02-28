@@ -38,3 +38,5 @@
   ff = false
 [branch]
   autosetuprebase = always
+[github]
+	user = arusso
