@@ -19,7 +19,7 @@ Bundle 'mv/mv-vim-puppet'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'arusso/vim-colorschemes'
-Bundle 'airblade/vim-gitgutter'
+"Bundle 'airblade/vim-gitgutter'
 
 let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
 
