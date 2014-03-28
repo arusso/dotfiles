@@ -122,3 +122,5 @@ complete -F _complete_hosts host
 # Lastly, lets import our 'private' definitions.  If items are redefined
 # likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
 . ~/.bashrc.private
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

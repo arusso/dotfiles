@@ -53,3 +53,5 @@ setopt   extendedhistory      # Save each command's beginning timestamp and the
 setopt incappendhistory       # append each line as it is called, and not at the
                               # time the shell closes
 setopt histreduceblanks       # don't save blanks
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
