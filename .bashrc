@@ -1,3 +1,14 @@
+##-ANSI-COLOR-CODES-##
+Color_Off="\033[0m"
+###-Regular-###
+Red="\033[0;31m"
+Green="\033[0;32m"
+Purple="\033[0;35"
+####-Bold-####
+BGreen="\033[1;32m"
+BRed="\033[1;31m"
+BPurple="\033[1;35m"
+
 # This file is launched whenever a terminal is opened
 PATH=~/bin:/usr/local/bin:$PATH
 
@@ -29,8 +40,44 @@ if [[ "$PLATFORM"  == "OSX" ]]; then
     export LC_ALL="en_US.UTF-8"
 fi
 
-# exports
-export PS1="\u@\h:\W\$ "  # custom prompt
+# Customer our PS1
+#export PS1="$(__stat) \u@\h:\W\$ "$Color_Off  # custom prompt
+function __stat() {
+  if [ $? -eq 0 ]; then
+    echo -en $BGreen"[✓]"$Color_Off
+  else
+    echo -en $BRed"[✘]"$Color_Off
+  fi
+}
+
+function __git_prompt() {
+  local git_status="`git status -unormal 2>&1`"
+  if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
+    if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+      local Color_On=$Green
+    elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+      local Color_On=$Purple
+    else
+      local Color_On=$Red
+    fi
+
+    if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+      branch=${BASH_REMATCH[1]}
+    else
+      # Detached HEAD. (branch=HEAD is a faster alternative.)
+      branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
+    fi
+
+    echo -ne "$Color_On[$branch]$Color_Off "
+  fi
+}
+
+PS1=""
+PS1+='$(__stat) '$Color_Off
+PS1+="\u@\h:\W "
+PS1+='$(__git_prompt)'$Color_Off
+PS1+="\$ "
+export PS1
 
 # hourglass function
 hourglass(){ trap 'tput cnorm' EXIT INT;local s=$(($SECONDS +$1));(tput civis;while [[ $SECONDS -lt $s ]];do for f in '|' '\' '-' '/';do echo -n "$f" && sleep .2s && echo -n $'\b';done;done;);tput cnorm;}
