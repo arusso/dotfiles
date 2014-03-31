@@ -29,10 +29,14 @@ function __ps1_git_prompt() {
 }
 
 function __get_ps1_prompt() {
-  PS1="$(__ps1_rc) $Color_Off\
+  if [ "$SIMPLE_PROMPT" == "1" ]; then
+    PS1="\u@\h\W \$ "
+  else
+    PS1="$(__ps1_rc) $Color_Off\
 \u@\h:\W \
 $(__ps1_git_prompt)\
 \$ "
+  fi
 }
 
 PROMPT_COMMAND=__get_ps1_prompt
