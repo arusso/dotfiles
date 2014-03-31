@@ -1,13 +1,11 @@
 ##-ANSI-COLOR-CODES-##
-Color_Off="\033[0m"
-###-Regular-###
-Red="\033[0;31m"
-Green="\033[0;32m"
-Purple="\033[0;35"
-####-Bold-####
-BGreen="\033[1;32m"
-BRed="\033[1;31m"
-BPurple="\033[1;35m"
+Color_Off="\[\033[0m\]"
+Red="\[\033[0;31m\]"
+Green="\[\033[0;32m\]"
+Purple="\[\033[0;35\]"
+BGreen="\[\033[1;32m\]"
+BRed="\[\033[1;31m\]"
+BPurple="\[\033[1;35m\]"
 
 # This file is launched whenever a terminal is opened
 PATH=~/bin:/usr/local/bin:$PATH
@@ -41,12 +39,11 @@ if [[ "$PLATFORM"  == "OSX" ]]; then
 fi
 
 # Customer our PS1
-#export PS1="$(__stat) \u@\h:\W\$ "$Color_Off  # custom prompt
 function __stat() {
   if [ $? -eq 0 ]; then
-    echo -en $BGreen"[✓]"$Color_Off
+    echo -en "$BGreen[✓]$Color_Off"
   else
-    echo -en $BRed"[✘]"$Color_Off
+    echo -en "$BRed[✘]$Color_Off"
   fi
 }
 
@@ -68,16 +65,22 @@ function __git_prompt() {
       branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
     fi
 
-    echo -ne "$Color_On[$branch]$Color_Off "
+    echo -en "$Color_On[$branch]$Color_Off "
   fi
 }
 
-PS1=""
-PS1+='$(__stat) '$Color_Off
-PS1+="\u@\h:\W "
-PS1+='$(__git_prompt)'$Color_Off
-PS1+="\$ "
-export PS1
+function __get_bash_prompt() {
+  PS1="$(__stat) $Color_Off\
+\u@\h:\W \
+$(__git_prompt)\
+\$ "
+}
+
+# by putting our PS1 into a function, it appropriately handles the ANSI color
+# escape codes while allowing the shell properly ascertain the width of the line
+#
+# See: http://stackoverflow.com/questions/6592077/bash-prompt-and-echoing-colors-inside-a-function
+PROMPT_COMMAND=__get_bash_prompt
 
 # hourglass function
 hourglass(){ trap 'tput cnorm' EXIT INT;local s=$(($SECONDS +$1));(tput civis;while [[ $SECONDS -lt $s ]];do for f in '|' '\' '-' '/';do echo -n "$f" && sleep .2s && echo -n $'\b';done;done;);tput cnorm;}
