@@ -27,7 +27,7 @@ export PLATFORM
 
 # generic aliases
 alias dir='echo This is not Windows, Stupid.'
-alias ll='ls -lh'
+alias ll='ls -hAlpt'
 
 # OSX Specific Aliases
 if [[ "$PLATFORM"  == "OSX" ]]; then
