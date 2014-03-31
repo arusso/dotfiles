@@ -38,7 +38,7 @@ if [[ "$PLATFORM"  == "OSX" ]]; then
     export LC_ALL="en_US.UTF-8"
 fi
 
-# Customer our PS1
+# Customize our PS1
 function __stat() {
   if [ $? -eq 0 ]; then
     echo -en "$BGreen[✓]$Color_Off"
