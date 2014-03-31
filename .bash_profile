@@ -1,5 +1,5 @@
 # This is launched on login
-PATH=~/bin:/usr/local/bin:$PATH
+#PATH=~/bin:/usr/local/bin:$PATH
 
 # Do we really want to maintain 2 files?
 # No.
