@@ -1,8 +1,5 @@
-# This is launched on login
-#PATH=~/bin:/usr/local/bin:$PATH
+# shell initialization file, launched for login shells
 
-# Do we really want to maintain 2 files?
-# No.
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi

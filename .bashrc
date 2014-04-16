@@ -1,3 +1,5 @@
+# per-interactive shell startup file
+
 # maintain an env variable to keep track of where we store our dotfiles
 export DOTFILES_DIR=$(dirname $(readlink -e ~/.bashrc))
 
