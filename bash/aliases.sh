@@ -7,3 +7,4 @@ if [[ "$PLATFORM"  == "OSX" ]]; then
 fi
 
 alias please='sudo !!'
+alias vi='/usr/bin/vim'
