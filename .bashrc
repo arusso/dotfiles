@@ -6,9 +6,7 @@ export DOTFILES_DIR=$(dirname $(readlink -e ~/.bashrc))
 . "$DOTFILES_DIR/bash/aliases.sh"
 . "$DOTFILES_DIR/bash/prompt.sh"
 . "$DOTFILES_DIR/bash/functions.sh"
-if [ "$RVM_LOADED" != "1" ]; then
-  . "$DOTFILES_DIR/bash/rvm.sh"
-fi
+. "$DOTFILES_DIR/bash/rvm.sh"
 . "$DOTFILES_DIR/bash/heroku.sh"
 . "$DOTFILES_DIR/bash/vagrant.sh"
 . "$DOTFILES_DIR/bash/complete.sh"
