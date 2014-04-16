@@ -6,7 +6,7 @@ READLINK=$(which readlink)
 [[ "$(uname)" == "Linux" ]] && READLINK="$READLINK -e"
 export READLINK
 
-export DOTFILES_DIR=$(dirname $(readlink -e ~/.bashrc))
+export DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
 
 . "$DOTFILES_DIR/bash/init.sh"
 . "$DOTFILES_DIR/bash/colors.sh"
