@@ -21,8 +21,8 @@ Bundle 'mattn/gist-vim'
 Bundle 'arusso/vim-colorschemes'
 "Bundle 'airblade/vim-gitgutter'
 
-let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
-
+"let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
+let g:syntastic_puppet_puppetlint_args='--no-class_inherits_from_params_class --no-80chars-check'
 
 "" General Options
 
