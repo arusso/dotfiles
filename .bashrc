@@ -1,6 +1,5 @@
-[[ -L ~/.bashrc ]] &&  DOTFILES_DIR=$(dirname $(readlink ~/.bashrc)) \
-  || DOTFILES_DIR=$(dirname ~/.bashrc)
-export DOTFILES_DIR
+# maintain an env variable to keep track of where we store our dotfiles
+export DOTFILES_DIR=$(dirname $(readlink -e ~/.bashrc))
 
 . "$DOTFILES_DIR/bash/init.sh"
 . "$DOTFILES_DIR/bash/colors.sh"
