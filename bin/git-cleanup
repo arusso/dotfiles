@@ -1,0 +1,46 @@
+#!/bin/sh
+
+function usage() {
+  printf "hello\n"
+}
+
+if  [ $# -gt 1 ]; then
+  usage
+  exit 1
+fi
+
+function get_branches_to_clean() {
+  local curr=$(git branch | egrep '^\*' | cut -d ' ' -f 2)
+  [[ "$curr" == 'master' ]] || git checkout master 2>&1 1>/dev/null
+  if [ $? -eq 0 ]; then
+    git branch --merge|egrep -v '^([\*\ ] master|\* .*)$'|sed 's/^[[:space:]]*//g'
+    [[ "$curr" == 'master' ]] || git checkout $curr 2>&1 1>/dev/null
+  else
+    printf "unable to switch to branch 'master'"
+  fi
+}
+
+opt=$(echo $1 | tr '[:upper:]' '[:lower:]')
+
+if [ "$opt" == "usage" ] || [ "$opt" == "u" ]; then
+  usage
+  exit 1
+elif [ "$opt" == "noop" ] || [ "$opt" == "n" ]; then
+  get_branches_to_clean
+  exit
+else
+  to_clean=$(get_branches_to_clean)
+  [[ "$to_clean" == "" ]] && exit
+  printf "please confirm you want to clean (remove) the following local branches:\n\n  Branches:\n\n"
+  for br in $to_clean; do
+    printf "  $br\n"
+  done
+  printf "\n> (y|N): "
+  read ans
+  ans=$(echo $ans | tr '[:upper:]' '[:lower:]')
+  if [ "$ans" == "yes" ] || [ "$ans" == "y" ]; then
+    for br in $to_clean; do
+      git branch -d $br 2>&1 1>/dev/null && git push origin :$br 2>&1 1>/dev/null
+    done
+  fi
+fi
