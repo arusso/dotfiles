@@ -42,3 +42,7 @@
 	user = arusso
 [core]
 	editor = /usr/bin/vim
+[pack]
+	threads = 0
+[diff]
+	renamelimit = 0
