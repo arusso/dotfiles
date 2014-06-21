@@ -17,6 +17,7 @@ export DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
 . "$DOTFILES_DIR/bash/heroku.sh"
 . "$DOTFILES_DIR/bash/vagrant.sh"
 . "$DOTFILES_DIR/bash/complete.sh"
+. "$DOTFILES_DIR/bash/ssh.sh"
 
 # Lastly, lets import our 'private' definitions.  If items are redefined
 # likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
