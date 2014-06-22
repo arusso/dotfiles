@@ -73,3 +73,11 @@ match TrailingSpace /\s\+$/
 " allow us to hit ; in normal mode as an alternative to shift-: to enter
 " commands
 nnoremap ; :
+
+" setup some leaders for common commands
+let mapleader = '-'
+
+" clear out all trailing whitespace
+nnoremap <leader>w :%s/\s\+$//g<return>
+" replace unquoted modes in puppet
+nnoremap <leader>fixmode :%s/\(=>\s\+\)\([0-9]\+\)\s*\(,\?\)$/\1'\2'\3/g<return>
