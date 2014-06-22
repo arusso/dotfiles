@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+usage() {
+  printf "usage: git autorebase [branch]\n"
+  printf "\n"
+  printf "  Configures branch to rebase on pulls. If no branch is specified,\n"
+  printf "  uses current branch\n"
+}
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+[[ -z "$BRANCH" ]] || git config branch.${BRANCH}.rebase true
