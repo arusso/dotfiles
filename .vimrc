@@ -64,11 +64,11 @@ set modelines=4
 
 " highlight our 81st character
 highlight OverLength ctermbg=red ctermfg=black guibg=#592929
-match OverLength /\%81v/
+call matchadd('OverLength', '\%81v.')
 
 " highlight trailing spaces
 highlight TrailingSpace ctermbg=red ctermfg=black guibg=#592929
-match TrailingSpace /\s\+$/
+call matchadd('TrailingSpace', '\s\+$')
 
 " allow us to hit ; in normal mode as an alternative to shift-: to enter
 " commands
