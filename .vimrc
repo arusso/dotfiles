@@ -1,4 +1,4 @@
-" 
+"
 " ~/.vimrc
 "
 set nocompatible
@@ -62,6 +62,14 @@ nmap <space> :noh<cr>
 set modeline
 set modelines=4
 
-" big bright line where our 80char stop is
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+" highlight our 81st character
+highlight OverLength ctermbg=red ctermfg=black guibg=#592929
+match OverLength /\%81v/
+
+" highlight trailing spaces
+highlight TrailingSpace ctermbg=red ctermfg=black guibg=#592929
+match TrailingSpace /\s\+$/
+
+" allow us to hit ; in normal mode as an alternative to shift-: to enter
+" commands
+nnoremap ; :
