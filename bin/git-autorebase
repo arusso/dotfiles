@@ -9,5 +9,6 @@ usage() {
   printf "  uses current branch\n"
 }
 
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-[[ -z "$BRANCH" ]] || git config branch.${BRANCH}.rebase true
+BRANCH=$1
+[[ -z "$BRANCH" ]] && BRANCH=$(git rev-parse --abbrev-ref HEAD)
+git config branch.${BRANCH}.rebase true
