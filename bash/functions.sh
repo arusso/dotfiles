@@ -41,3 +41,7 @@ function replace_text() {
     echo perl -pi -e $1 $2
   fi
 }
+
+check_erb() {
+  erb -P -x -T '-' $1 | ruby -c
+}
