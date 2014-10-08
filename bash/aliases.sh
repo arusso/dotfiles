@@ -10,3 +10,4 @@ fi
 
 alias please='sudo !!'
 alias vi='/usr/bin/vim'
+alias mux='tmuxifier'
