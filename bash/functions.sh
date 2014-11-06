@@ -42,7 +42,7 @@ function replace_text() {
   fi
 }
 
-check_erb() {
+function check_erb() {
   erb -P -x -T '-' $1 | ruby -c
 }
 
