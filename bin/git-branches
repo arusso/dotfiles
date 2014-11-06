@@ -39,10 +39,10 @@ branches=`git branch --list`
 
 while read -r branch; do
     # git marks current branch with "* ", remove it
-      clean_branch_name=${branch//\*\ /}
-        description=`git config branch.$clean_branch_name.description`
-          printf "%-15s %s\n" "$branch" "$description"
-          done <<< "$branches"
+    clean_branch_name=${branch//\*\ /}
+    description=`git config branch.$clean_branch_name.description|head -1`
+    printf "%-20s %s\n" "$branch" "$description"
+done <<< "$branches"
 
 # example output
 # $ ./branches.sh
