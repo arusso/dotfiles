@@ -45,3 +45,29 @@ function replace_text() {
 check_erb() {
   erb -P -x -T '-' $1 | ruby -c
 }
+
+
+# iterates through a file of hostnames, one per line, and tests them against a
+# specified environment name
+#
+# usage: test_puppet_branch <hosts file> <environment name>
+function test_puppet_branch() {
+  [[ -f $1 ]] || exit
+  [[ "$2" == "" ]] && exit
+
+  # stay in the loop
+  while [ 1 -eq 1 ]; do
+    # read each line
+    while read line; do
+      for hst in $(eval "echo $line"); do 
+        echo "#### HOST: ${hst} ####"
+        runon ${hst} "sudo puppet agent -t --noop --environment ${2}"
+        echo "#######################"
+      done
+      # delete the entry from our file
+      eval "sed -i '' -e '/^$line\$/d'" $1
+    done < $1
+    # sleep afterwards to prevent spinning our wheels
+    sleep 1
+  done
+}
