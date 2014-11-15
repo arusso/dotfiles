@@ -16,6 +16,7 @@ export DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
 . "$DOTFILES_DIR/bash/rvm.sh"
 . "$DOTFILES_DIR/bash/heroku.sh"
 . "$DOTFILES_DIR/bash/vagrant.sh"
+. "$DOTFILES_DIR/bash/packer.sh"
 . "$DOTFILES_DIR/bash/complete.sh"
 . "$DOTFILES_DIR/bash/ssh.sh"
 . "$DOTFILES_DIR/bash/tmuxifier.sh"
