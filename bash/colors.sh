@@ -6,3 +6,6 @@ Purple="\[\033[0;35m\]"
 BGreen="\[\033[1;32m\]"
 BRed="\[\033[1;31m\]"
 BPurple="\[\033[1;35m\]"
+
+## Set our ls color scheme on OSX
+export LSCOLORS="Exfxcxdxbxegedabagacad"
