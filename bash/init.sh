@@ -14,6 +14,7 @@ export PLATFORM
 
 if [ -z "$CUSTOM_PATH_SET" ]; then
   PATH=~/bin:~/local/bin:/usr/local/bin:$PATH
+  export PATH
   CUSTOM_PATH_SET=1
   export CUSTOM_PATH_SET
 fi
