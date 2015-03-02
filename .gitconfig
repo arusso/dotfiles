@@ -4,12 +4,14 @@
 [alias]
   bl = blame
   br = branch
+  brs = branches
   ci = commit
   cs = commit -S
   css = commit -S -s
   co = checkout
   cob = checkout -b
   df = diff -b
+  dfc = diff --cached
   hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
   gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
@@ -18,6 +20,7 @@
   m = merge --ff
   st = status -s
   staged = diff --staged
+  cached = diff --cached
   sub = submodule
   unstage = reset HEAD
   ungit = rm --cached
