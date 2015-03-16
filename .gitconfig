@@ -10,6 +10,7 @@
   css = commit -S -s
   co = checkout
   cob = checkout -b
+  cu = cleanup
   df = diff -b
   dfc = diff --cached
   hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
