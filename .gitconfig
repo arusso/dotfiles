@@ -13,6 +13,7 @@
   cu = cleanup
   df = diff -b
   dfc = diff --cached
+  dfm = diff master..
   hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
   gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
