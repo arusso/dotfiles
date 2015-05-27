@@ -13,7 +13,10 @@ export DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
 . "$DOTFILES_DIR/bash/aliases.sh"
 . "$DOTFILES_DIR/bash/prompt.sh"
 . "$DOTFILES_DIR/bash/functions.sh"
-. "$DOTFILES_DIR/bash/rvm.sh"
+# to use rvm instead of rbenv, uncomment the following line and comment the line
+# that source's rbenv.sh
+#. "$DOTFILES_DIR/bash/rvm.sh"
+. "$DOTFILES_DIR/bash/rbenv.sh"
 . "$DOTFILES_DIR/bash/heroku.sh"
 . "$DOTFILES_DIR/bash/vagrant.sh"
 . "$DOTFILES_DIR/bash/packer.sh"
