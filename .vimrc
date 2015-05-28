@@ -11,14 +11,17 @@ call vundle#rc()
 " vundle likes to manage vundle
 Bundle 'gmarik/vundle'
 
+" gist support
+"Bundle 'mattn/webapi-vim'
+"Bundle 'mattn/gist-vim'
+
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 
 Bundle 'tpope/vim-fugitive'
 Bundle 'mv/mv-vim-puppet'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
 Bundle 'arusso/vim-colorschemes'
+Bundle 'tpope/vim-bundler'
 "Bundle 'airblade/vim-gitgutter'
 
 "let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
@@ -81,3 +84,6 @@ let mapleader = '-'
 nnoremap <leader>w :%s/\s\+$//g<return>
 " replace unquoted modes in puppet
 nnoremap <leader>fixmode :%s/\(=>\s\+\)\([0-9]\+\)\s*\(,\?\)$/\1'\2'\3/g<return>
+
+" incremental search
+set incsearch
