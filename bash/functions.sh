@@ -71,3 +71,8 @@ function test_puppet_branch() {
     sleep 1
   done
 }
+
+get_abs_filename() {
+  # $1 : relative filename
+  echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+}
