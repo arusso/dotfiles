@@ -6,7 +6,7 @@ filetype off
 
 " setup vundle
 set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+call vundle#begin()
 
 " vundle likes to manage vundle
 Bundle 'gmarik/vundle'
