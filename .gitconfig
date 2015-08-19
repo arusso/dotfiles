@@ -19,6 +19,7 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   log = log -p
   partial = add --patch
+  pp = pull --prune
   m = merge --ff
   st = status -s
   staged = diff --staged
