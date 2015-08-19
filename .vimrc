@@ -22,10 +22,14 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mv/mv-vim-puppet'
 Bundle 'arusso/vim-colorschemes'
 Bundle 'tpope/vim-bundler'
+Bundle 'plasticboy/vim-markdown'
 "Bundle 'airblade/vim-gitgutter'
 
 "let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
 let g:syntastic_puppet_puppetlint_args='--no-class_inherits_from_params_class --no-80chars-check'
+
+" use frontmatter syntax highlighting
+let g:vim_markdown_frontmatter=1
 
 "" General Options
 
