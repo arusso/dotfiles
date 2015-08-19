@@ -70,8 +70,12 @@ set modeline
 set modelines=4
 
 " highlight our 81st character
-highlight OverLength ctermbg=red ctermfg=black guibg=#592929
+highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
 call matchadd('OverLength', '\%81v.')
+
+" highlight the 141st character
+highlight OverLength140 ctermbg=red ctermfg=black guibg=#592929
+call matchadd('OverLength140', '\%141v.')
 
 " highlight trailing spaces
 highlight TrailingSpace ctermbg=red ctermfg=black guibg=#592929
