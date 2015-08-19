@@ -22,12 +22,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mv/mv-vim-puppet'
 Plugin 'arusso/vim-colorschemes'
 Plugin 'tpope/vim-bundler'
+Plugin 'plasticboy/vim-markdown'
 "Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
 "let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
 let g:syntastic_puppet_puppetlint_args='--no-class_inherits_from_params_class --no-80chars-check'
+
+" use frontmatter syntax highlighting
+let g:vim_markdown_frontmatter=1
 
 "" General Options
 
@@ -68,8 +72,12 @@ set modeline
 set modelines=4
 
 " highlight our 81st character
-highlight OverLength ctermbg=red ctermfg=black guibg=#592929
+highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
 call matchadd('OverLength', '\%81v.')
+
+" highlight the 141st character
+highlight OverLength140 ctermbg=red ctermfg=black guibg=#592929
+call matchadd('OverLength140', '\%141v.')
 
 " highlight trailing spaces
 highlight TrailingSpace ctermbg=red ctermfg=black guibg=#592929
