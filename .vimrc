@@ -9,20 +9,22 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
 " vundle likes to manage vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " gist support
-"Bundle 'mattn/webapi-vim'
-"Bundle 'mattn/gist-vim'
+"Plugin 'mattn/webapi-vim'
+"Plugin 'mattn/gist-vim'
 
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
 
-Bundle 'tpope/vim-fugitive'
-Bundle 'mv/mv-vim-puppet'
-Bundle 'arusso/vim-colorschemes'
-Bundle 'tpope/vim-bundler'
-"Bundle 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mv/mv-vim-puppet'
+Plugin 'arusso/vim-colorschemes'
+Plugin 'tpope/vim-bundler'
+"Plugin 'airblade/vim-gitgutter'
+
+call vundle#end()
 
 "let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
 let g:syntastic_puppet_puppetlint_args='--no-class_inherits_from_params_class --no-80chars-check'
