@@ -7,7 +7,7 @@ if [ $? -eq 1 ] || [[ -f "$HOME/.use_ssh_agent" ]]; then
   if test -L "$_ssh_auth_sock" && kill -0 $(head -n 1 "$_ssh_agent_info" | cut -d= -f2) 2>/dev/null; then
     . "$_ssh_agent_info"
   else
-    eval $(ssh-agent -s) >/dev/null
+    eval $(ssh-agent -s -t 3600) >/dev/null
     rm -f $_ssh_auth_sock
     ln -sf $SSH_AUTH_SOCK $_ssh_auth_sock
     echo "SSH_AGENT_PID=$SSH_AGENT_PID" > $_ssh_agent_info
