@@ -24,7 +24,7 @@ setup_ssh_agent() {
 }
 
 setup_gpg_agent() {
-  GPG_TTY=$(tty); export GPG_TTY
+  export GPG_TTY=$(tty)
   _gpg_agent_info="$HOME/.gpg_agent_info"
   _ssh_auth_sock="$HOME/.ssh_auth_sock"
   # test to see if we have an existing agent loaded, and load gpg-agent if not
@@ -37,6 +37,7 @@ setup_gpg_agent() {
   rm -f $_ssh_auth_sock
   ln -sf $SSH_AUTH_SOCK $_ssh_auth_sock
   export SSH_AUTH_SOCK=$_ssh_auth_sock
+  echo UPDATESTARTUPTTY | gpg-connect-agent &>/dev/null
 }
 
 restart_gpg_agent() {
