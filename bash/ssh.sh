@@ -58,16 +58,16 @@ restart_gpg_agent() {
 #       good enough.
 #
 #       https://github.com/rcaloras/bash-preexec
-ssh() {
-  if [ $USE_GPG_AGENT -eq 1 ]; then
-    # make sure we have the latest environment information
-    setup_gpg_agent
-    # update our TTY
-    echo UPDATESTARTUPTTY | gpg-connect-agent &>/dev/null
-  fi
-  # now we should ssh away
-  $(which ssh) "$@"
-}
+#ssh() {
+#  if [ $USE_GPG_AGENT -eq 1 ]; then
+#    # make sure we have the latest environment information
+#    setup_gpg_agent
+#    # update our TTY
+#    echo UPDATESTARTUPTTY | gpg-connect-agent &>/dev/null
+#  fi
+#  # now we should ssh away
+#  $(which ssh) "$@"
+#}
 
 if [ $USE_GPG_AGENT -eq 1 ]; then
   setup_gpg_agent

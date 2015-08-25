@@ -33,6 +33,12 @@ function __get_ps1_prompt() {
   if [ "$SIMPLE_PROMPT" == "1" ]; then
     PS1="\u@\h:\W \$ "
   fi
+  # if we are using our GPG_AGENT, we should setup the startup TTY each time we
+  # set our prompt. This is a hacky way of having the gpg-agent follow us, since
+  # it requires we redraw the prompt (by hitting enter first) for it to follow
+  # us. The better solution, (see bash/ssh.sh) requires a bit more hackery that
+  # im not quite ready to commit to.
+  [[ $USE_GPG_AGENT -eq 1 ]] && echo UPDATESTARTUPTTY | gpg-connect-agent 2>&1 >>/tmp/gpg-connect-agent
 }
 
 PROMPT_COMMAND=__get_ps1_prompt
