@@ -28,10 +28,19 @@ function __ps1_git_prompt() {
   fi
 }
 
+function __ps1_battery_percentage() {
+  local _has_battery=$(ioreg -c AppleSmartBattery | grep BatteryInstalled | awk '{print $5}'|tr [:upper:] [:lower:])
+  if [ "$_has_battery" == "yes" ] && [[ $NO_BATTERY_PROMPT -ne 1 ]]; then
+    local _battery_percentage=$(ioreg -c AppleSmartBattery | grep Capacity | grep -v Legacy| tr '\n' ' | ' | awk '{printf("%.2f%%", $10/$15 * 100)}')
+    echo -en "(${_battery_percentage}) "
+  fi
+}
+
 function __get_ps1_prompt() {
-  PS1="$(__ps1_rc) \u@\h:\W $(__ps1_git_prompt)\$ "
   if [ "$SIMPLE_PROMPT" == "1" ]; then
     PS1="\u@\h:\W \$ "
+  else
+    PS1="$(__ps1_battery_percentage)$(__ps1_rc) \u@\h:\W $(__ps1_git_prompt)\$ "
   fi
   # if we are using our GPG_AGENT, we should setup the startup TTY each time we
   # set our prompt. This is a hacky way of having the gpg-agent follow us, since
