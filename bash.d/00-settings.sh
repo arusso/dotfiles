@@ -1,2 +1,0 @@
-export SSH_CACHE_TTL=3600
-

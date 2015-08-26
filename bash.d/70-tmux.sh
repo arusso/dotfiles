@@ -1,5 +1,5 @@
-# only try to initialize tmuxifier if we haven't done so before
-if [ "$TMUXIFIER_INIT" == "" ]; then
+# load tmuxifier if it hasn't already been done
+if test -z "$TMUXIFIER_INIT"; then
   INSTALLED=0
   [[ -d "$HOME/.tmuxifier" ]] && INSTALLED=1
 
@@ -8,6 +8,6 @@ if [ "$TMUXIFIER_INIT" == "" ]; then
     git clone https://github.com/arusso/tmuxifier $HOME/.tmuxifier
   fi
 
-  export PATH="$HOME/.tmuxifier/bin:$PATH"
+  export PATH="$PATH:$HOME/.tmuxifier/bin"
   export TMUXIFIER_INIT=1
 fi
