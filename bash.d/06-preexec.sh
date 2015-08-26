@@ -22,5 +22,7 @@ function PostCommand() {
     return
   fi
 
-  # do stuff, or not
+  # flush our history to file
+  history -a
+
 }

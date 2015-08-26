@@ -22,7 +22,11 @@ fi
 export SSH_CACHE_TTL=3600
 
 # ignore commands that begin with whitespace, or that are duplicates
+# note: we control flushing our history file after each command on 06-preexec.sh
 export HISTCONTROL=ignoreboth
+export HISTTIMEFORMAT="%d-%b-%Y %T "
+export HISTSIZE=2500
+export HISTFILESIZE=2500
 
 # define our ansi color codes
 Color_Off="\[\033[0m\]"
