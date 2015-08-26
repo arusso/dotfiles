@@ -12,8 +12,3 @@ export DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
 for file in "$DOTFILES_DIR"/bash.d/*.sh; do
   . "$file"
 done
-
-# Lastly, lets import our 'private' definitions.  If items are redefined
-# likes SSH_DOMAIN, etc.  Then these will be the ones to take precedence
-[[ -f ~/.bashrc.private ]] && \
-  . ~/.bashrc.private

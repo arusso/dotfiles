@@ -2,3 +2,4 @@ local/
 theme_index
 *.swp
 *~
+bash.d/*.local.sh
