@@ -9,6 +9,7 @@ export READLINK
 export DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
 
 . "$DOTFILES_DIR/bash/init.sh"
+. "$DOTFILES_DIR/bash/preexec.sh"
 . "$DOTFILES_DIR/bash/colors.sh"
 . "$DOTFILES_DIR/bash/aliases.sh"
 . "$DOTFILES_DIR/bash/prompt.sh"
