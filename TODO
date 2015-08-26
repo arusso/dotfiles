@@ -1,2 +1,1 @@
 refactor sourcing of bash functions into bash.d
-implement precmd/preexec, see: http://superuser.com/questions/175799/does-bash-have-a-hook-that-is-run-before-executing-a-command
