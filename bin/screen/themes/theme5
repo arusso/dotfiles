@@ -1,7 +1,0 @@
-#!/bin/bash
- # cyan
-
- SESSION=$1
-
- screen -S $SESSION -X caption always "%{= KW}%-w%{= Ck}%n %t%{-}%+w %-="
- screen -S $SESSION -X hardstatus alwayslastline "%{= kW} %-= %{= kC}Session: %u%{= kW}%5\` | %{= kC}Host:%{= kW} %H | %{= kC} Uptime:%{= kW} %4\` | %{= kC} MEM:%{= kW} %2\`MB |%{= kC} SW: %{= kW}%3\`MB | %{= kC} DATE:%{= kW} %m/%d/%y %C %A"
