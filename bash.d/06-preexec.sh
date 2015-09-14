@@ -9,10 +9,10 @@ function PreCommand() {
    [[ $USE_GPG_AGENT -eq 1 ]] && echo UPDATESTARTUPTTY | gpg-connect-agent 2>&1 >/dev/null
 
   # append new entries to histfile from histlist
-  history -a
+  #history -a
   # clear our history file completely, then reload it
-  history -c
-  history -r
+  #history -c
+  #history -r
  }
 trap "PreCommand" DEBUG
 
