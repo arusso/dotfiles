@@ -99,3 +99,19 @@ get_abs_filename() {
   # $1 : relative filename
   echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 }
+
+# alternative for fold command that also allows me to add a prepending character
+# each line that is folded
+fold2() {
+  TEST=$(which test)
+  if $TEST "$PLATFORM" = "OSX"; then
+    SED=$(which gsed)
+  else
+    SED=$(which sed)
+  fi
+  local input="$1"
+  local len=${2-80}
+  local prefix=${3-}
+
+  echo "$input" | $SED -n ':p;s/\([^\n]\{'"${len}"'\}\)\([^\n]\)/\1\n'"${prefix}"'\2/;tp;p'
+}
