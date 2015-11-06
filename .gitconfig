@@ -42,7 +42,7 @@
 
 # disable ff merges by default
 [merge]
-  ff = false
+  ff = true
 [branch]
   autosetuprebase = always
 [github]
