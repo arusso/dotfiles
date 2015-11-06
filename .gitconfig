@@ -16,6 +16,7 @@
   dfm = diff master..
   hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
   gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
+  l = log --pretty=format:'[%Cred%h%Creset] %C(yellow)%s%C(reset) (%Cblueby %C(magenta)%ae %Cblue%ar%Creset)'
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   log = log -p
   partial = add --patch
