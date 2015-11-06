@@ -115,3 +115,9 @@ fold2() {
 
   echo "$input" | $SED -n ':p;s/\([^\n]\{'"${len}"'\}\)\([^\n]\)/\1\n'"${prefix}"'\2/;tp;p'
 }
+
+epoch2date() {
+  epoch=$(echo "$1"|sed 's/\..*$//')
+  date -r $epoch
+}
+
