@@ -29,6 +29,7 @@ function __ps1_git_prompt() {
 }
 
 function __ps1_battery_percentage() {
+  [[ "$PLATFORM" != "OSX" ]] && return
   local _has_battery=$(ioreg -c AppleSmartBattery | grep BatteryInstalled | awk '{print $5}'|tr [:upper:] [:lower:])
   if [ "$_has_battery" == "yes" ] && [[ $NO_BATTERY_PROMPT -ne 1 ]]; then
     local _battery_percentage=$(ioreg -c AppleSmartBattery | grep Capacity | grep -v Legacy| tr '\n' ' | ' | awk '{printf("%.2f%%", $10/$15 * 100)}')
