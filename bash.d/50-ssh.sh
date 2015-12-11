@@ -1,20 +1,32 @@
 # default to using gpg-agent
+
 GPG_AGENT=$(which gpg-agent)
+
+# Set USE_GPG_AGENT to 1 if you want to disable using gpg-agent, even if it's
+# installed on the system
 USE_GPG_AGENT=${USE_GPG_AGENT:=1}
+
+# Set DISABLE_SSH_AGENT_SETUP to 1 if you want to prevent any modification of
+# the ssh-agent/gpg-agent and related environment. This effectively disables
+# the code in this file. Useful when you're running on a bastion server that
+# doesn't have any keys on it and is just forwarding back to your local agent
+DISABLE_SSH_AGENT_SETUP=${DISABLE_SSH_AGENT_SETUP:=0}
+
+
+[[ $DISABLE_SSH_AGENT_SETUP -eq 1 ]] && return
 
 # we can't use gpg agent if it's not installed
 if test -z "$GPG_AGENT"; then USE_GPG_AGENT=0; fi
 export GPG_AGENT
 export USE_GPG_AGENT
 
-# if we have gpg-agent installed, and we don't see $HOME/.use_ssh_agent, then
-# load gpg-agent. otherwise load ssh-agent
 _gpg_agent=$(which gpg-agent)
 if [ $? -eq 1 ]; then USE_GPG_AGENT=0; fi
 
 export USE_GPG_AGENT
 
 setup_ssh_agent() {
+  [[ $DISABLE_SSH_AGENT_SETUP -eq 1 ]] && return
   SSH_CACHE_TTL=${SSH_CACHE_TTL:=1800}
   _ssh_auth_sock="$HOME/.ssh_auth_sock"
   _ssh_agent_info="$HOME/.ssh_agent_info"
@@ -32,6 +44,7 @@ setup_ssh_agent() {
 }
 
 setup_gpg_agent() {
+  [[ $DISABLE_SSH_AGENT_SETUP -eq 1 ]] && return
   export GPG_TTY=$(tty)
   SSH_CACHE_TTL=${SSH_CACHE_TTL:=1800}
   _gpg_agent_info="$HOME/.gpg_agent_info"
