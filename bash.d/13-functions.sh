@@ -19,6 +19,26 @@ hourglass(){ trap 'tput cnorm' EXIT INT;local s=$(($SECONDS +$1));(tput civis;wh
 
 runon() { CLIENT=$1; COMMAND=$2; if [[ "$1" == "" || "$2" == "" ]]; then echo "USAGE: $0 <client> \"<command>\"    "; else ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -a -T ${CLIENT} "$2"; fi }
 
+# Function: toggle_set
+# Usage: toggle_set <0|1> "<value if 1>" "<value if 0>"
+# Description:
+#
+#   A simple function to return one of two values based on the value of the
+#   first toggle parameter. If the toggle parameter is not 0 (true) the first
+#   value is returned. Otherwise, the 2nd value is returned.
+#
+toggle_set() {
+  local TOGGLE=$1
+  local VALUE1=$2
+  local VALUE0=$3
+
+  if [[ $TOGGLE -eq 0 ]]; then
+    echo $VALUE0
+  else
+    echo $VALUE1
+  fi
+}
+
 # cool snippet a friend showed me. takes a diff of a file on two different
 # hosts, from this host.
 assdiff() {
