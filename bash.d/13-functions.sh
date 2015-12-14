@@ -17,8 +17,6 @@ newpass() {
 
 hourglass(){ trap 'tput cnorm' EXIT INT;local s=$(($SECONDS +$1));(tput civis;while [[ $SECONDS -lt $s ]];do for f in '|' '\' '-' '/';do echo -n "$f" && sleep .2s && echo -n $'\b';done;done;);tput cnorm;}
 
-runon() { CLIENT=$1; COMMAND=$2; if [[ "$1" == "" || "$2" == "" ]]; then echo "USAGE: $0 <client> \"<command>\"    "; else ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -a -T ${CLIENT} "$2"; fi }
-
 # Function: toggle_set
 # Usage: toggle_set <0|1> "<value if 1>" "<value if 0>"
 # Description:
@@ -36,6 +34,25 @@ toggle_set() {
     echo $VALUE0
   else
     echo $VALUE1
+  fi
+}
+
+# Function: runon
+# Usage: runon <hostname> "<command>"
+#
+#   A wrapper around ssh to run commands on remote hosts quickly. By default, no
+#   TTY is allocated. You can set RUNON_FORCE_TTY=1 to force allocation of one.
+#
+runon() {
+  RUNON_FORCE_TTY=${RUNON_FORCE_TTY:-0}
+  local RUNON_TTY=$(toggle_set $RUNON_FORCE_TTY "-t" "-T")
+
+  CLIENT=$1
+  COMMAND=$2
+  if [[ "$1" == "" || "$2" == "" ]]; then
+    echo "USAGE: $0 <client> \"<command>\"    "
+  else
+    ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -a  ${RUNON_TTY} ${CLIENT} "$2"
   fi
 }
 
