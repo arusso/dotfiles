@@ -40,9 +40,9 @@
 [push]
   default = current
 
-# disable ff merges by default
+# force fast-forward commits
 [merge]
-  ff = true
+  ff = only
 [branch]
   autosetuprebase = always
 [github]
