@@ -155,7 +155,12 @@ fold2() {
 
 epoch2date() {
   epoch=$(echo "$1"|sed 's/\..*$//')
-  date -r $epoch
+  if [[ $PLATFORM == "OSX" ]]; then
+    date -r $epoch
+  else
+    # assume LINUX otherwise
+    date -d @$epoch
+  fi
 }
 
 # login to a system and disable bluetooth. this script is useful when
