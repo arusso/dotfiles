@@ -53,3 +53,5 @@
 	threads = 0
 [diff]
 	renamelimit = 0
+[commit]
+  template = ~/.git-commit-template
