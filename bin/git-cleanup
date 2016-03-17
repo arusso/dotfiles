@@ -17,8 +17,8 @@ function get_branches_to_clean() {
 
   [[ "$curr" == "${base}" ]] || git checkout $base &>/dev/null
   if [ $? -eq 0 ]; then
-    git branch --merge|egrep -v "^([\*\ ] ${base}|\* .*)$"|sed 's/^[[:space:]]*//g'
-    [[ "$curr" == "${base}" ]] || git checkout $curr 2>&1 1>/dev/null
+    git branch --merge|egrep -v "^[\*\ ] (${base}|${curr})$"|sed 's/^[[:space:]]*//g'
+    [[ "$curr" == "${base}" ]] || git checkout $curr &>/dev/null
   else
     printf "unable to switch to branch '${base}'\n"
     printf "\n"
