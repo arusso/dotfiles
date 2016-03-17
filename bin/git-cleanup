@@ -1,24 +1,39 @@
 #!/bin/sh
 
+CLEANUP_BASE_BRANCH="$(git config --get cleanup.base)"
+
 function usage() {
-  printf "hello\n"
+  printf "usage: $(basename $0) [noop|usage]\n\n"
+  printf "Finds local branches that have already been merged into the main branch, usually\n"
+  printf "master, and offers to delete both the local and remote copy for you.\n"
+  printf "\n"
+  printf "If a branch other than master exists, you can set cleanup.base setting equal to\n"
+  printf "the name of your master branch.\n"
+}
+
+function get_branches_to_clean() {
+  local curr=$(git branch | egrep '^\*' | cut -d ' ' -f 2)
+  local base=${CLEANUP_BASE_BRANCH:-"master"}
+
+  [[ "$curr" == "${base}" ]] || git checkout $base &>/dev/null
+  if [ $? -eq 0 ]; then
+    git branch --merge|egrep -v "^([\*\ ] ${base}|\* .*)$"|sed 's/^[[:space:]]*//g'
+    [[ "$curr" == "${base}" ]] || git checkout $curr 2>&1 1>/dev/null
+  else
+    printf "unable to switch to branch '${base}'\n"
+    printf "\n"
+    printf "This usually happens when your base branch is something other than 'master'.\n"
+    printf "If this describes your situation, try running the following command replacing\n"
+    printf "\$BRANCH with the base branch for your repository\n\n"
+    printf "   $ git config cleanup.base \$BRANCH\n"
+    exit
+  fi
 }
 
 if  [ $# -gt 1 ]; then
   usage
   exit 1
 fi
-
-function get_branches_to_clean() {
-  local curr=$(git branch | egrep '^\*' | cut -d ' ' -f 2)
-  [[ "$curr" == 'master' ]] || git checkout master 2>&1 1>/dev/null
-  if [ $? -eq 0 ]; then
-    git branch --merge|egrep -v '^([\*\ ] master|\* .*)$'|sed 's/^[[:space:]]*//g'
-    [[ "$curr" == 'master' ]] || git checkout $curr 2>&1 1>/dev/null
-  else
-    printf "unable to switch to branch 'master'"
-  fi
-}
 
 opt=$(echo $1 | tr '[:upper:]' '[:lower:]')
 
