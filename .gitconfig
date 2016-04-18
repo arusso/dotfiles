@@ -46,12 +46,13 @@
 [branch]
   autosetuprebase = always
 [github]
-	user = arusso
+  user = arusso
 [core]
-	editor = /usr/bin/vim
+  editor = /usr/bin/vim
+  excludesfile = ~/.gitignore
 [pack]
-	threads = 0
+  threads = 0
 [diff]
-	renamelimit = 0
+  renamelimit = 0
 [commit]
   template = ~/.git-commit-template

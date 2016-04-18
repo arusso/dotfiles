@@ -1,0 +1,7 @@
+# General
+*~
+*.swp
+
+# Ruby Development
+.ruby-version
+.rbenv-gemsets
