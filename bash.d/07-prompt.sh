@@ -38,11 +38,12 @@ function __ps1_battery_percentage() {
 }
 
 function __get_ps1_prompt() {
+  RC=$(__ps1_rc)
   # setup our prompt
   if [ "$SIMPLE_PROMPT" == "1" ]; then
     PS1="\u@\h:\W \$ "
   else
-    PS1="$(__ps1_battery_percentage)$(__ps1_rc) \u@\h:\W $(__ps1_git_prompt)\$ "
+    PS1="$(__ps1_battery_percentage)${RC} \u@\h:\W $(__ps1_git_prompt)\$ "
   fi
 
   # defined in preexec.sh
