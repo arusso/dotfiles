@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Purpose:
+#  Redeploys the current git branch to the upstream repository by first deleting
+#  the branch, then pushing the branch upstream again. Will refuse to push to
+#  branches set in redeploy.exclude setting. If left unset, defaults to
+#  excluding 'master' branch.
+#
+# Example configuration:
+#   git config redeploy.exclude "production dev"
+#
+
+current_branch=$(git branch -l | egrep '^*' | awk '{ printf $2 }')
+exclude=$(git config --get redeploy.exclude)
+exclude=${exclude:-"master"}
+
+for br in $exclude; do
+  if [[ "${br}" == "${current_branch}" ]]; then
+    echo "Refusing to redeploy branch '${br}' because it is marked as excluded"
+    echo
+    echo "Check redeploy.exclude setting if you believe this to be an error."
+    exit 1
+  fi
+done
+
+echo "Deleting branch '${current_branch}' from remote repository..."
+git push origin :${current_branch}
+echo "Deploying branch '${current_branch}' to remote repository..."
+git push origin ${current_branch}
