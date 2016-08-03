@@ -17,8 +17,13 @@ function get_branches_to_clean() {
 
   [[ "$curr" == "${base}" ]] || git checkout $base &>/dev/null
   if [ $? -eq 0 ]; then
-    git branch --merge|egrep -v "^[\*\ ] (${base}|${curr})$"|sed 's/^[[:space:]]*//g'
+    local to_clean="$(git branch --merge|egrep -v "^[\*\ ] (${base}|${curr})$"|sed 's/^[[:space:]]*//g')"
     [[ "$curr" == "${base}" ]] || git checkout $curr &>/dev/null
+    local branch=""
+    for branch in $to_clean; do
+      is_branch_ignored $branch
+      [[ $? -eq 0 ]] && echo $branch
+    done
   else
     printf "unable to switch to branch '${base}'\n"
     printf "\n"
@@ -57,16 +62,14 @@ else
   [[ "$to_clean" == "" ]] && exit
   printf "please confirm you want to clean (remove) the following local branches:\n\n  Branches:\n\n"
   for br in $to_clean; do
-    is_branch_ignored $br
-    [[ $? -eq 0 ]] && printf "  $br\n"
+    printf "  $br\n"
   done
   printf "\n> (y|N): "
   read ans
   ans=$(echo $ans | tr '[:upper:]' '[:lower:]')
   if [ "$ans" == "yes" ] || [ "$ans" == "y" ]; then
     for br in $to_clean; do
-      is_branch_ignored $br
-      [[ $? -eq 0 ]] && git branch -d $br 2>&1 1>/dev/null && git push origin :$br 2>&1 1>/dev/null
+      git branch -d $br 2>&1 1>/dev/null && git push origin :$br 2>&1 1>/dev/null
     done
   fi
 fi
