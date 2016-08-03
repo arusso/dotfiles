@@ -30,6 +30,15 @@ function get_branches_to_clean() {
   fi
 }
 
+function is_branch_ignored() {
+  local branch=$1
+  local ignore=$(git config --get cleanup.ignore)
+  for b in $ignore; do
+    [[ "$branch" == "$b" ]] && return 1
+  done
+  return 0
+}
+
 if  [ $# -gt 1 ]; then
   usage
   exit 1
@@ -48,14 +57,16 @@ else
   [[ "$to_clean" == "" ]] && exit
   printf "please confirm you want to clean (remove) the following local branches:\n\n  Branches:\n\n"
   for br in $to_clean; do
-    printf "  $br\n"
+    is_branch_ignored $br
+    [[ $? -eq 0 ]] && printf "  $br\n"
   done
   printf "\n> (y|N): "
   read ans
   ans=$(echo $ans | tr '[:upper:]' '[:lower:]')
   if [ "$ans" == "yes" ] || [ "$ans" == "y" ]; then
     for br in $to_clean; do
-      git branch -d $br 2>&1 1>/dev/null && git push origin :$br 2>&1 1>/dev/null
+      is_branch_ignored $br
+      [[ $? -eq 0 ]] && git branch -d $br 2>&1 1>/dev/null && git push origin :$br 2>&1 1>/dev/null
     done
   fi
 fi
