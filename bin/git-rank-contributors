@@ -39,21 +39,25 @@ state = :pre_author
   when (state == :pre_author || state == :post_author) && l =~ /Author: (.*)$/
     author = $1
     state = :post_author
-    lines[author] ||= 0
+    lines[author] ||= {}
+    lines[author][:add] ||= 0
+    lines[author][:del] ||= 0
   when state == :post_author && l =~ /^\+\+\+/
     state = :in_diff
-  when state == :in_diff && l =~ /^[\+\-]/
-    lines[author] += 1
+  when state == :in_diff && l =~ /^\+/
+    lines[author][:add] += 1
+  when state == :in_diff && l =~ /^-/
+    lines[author][:del] += 1
   when state == :in_diff && l =~ /^commit /
     state = :pre_author
   end
 end
 
-lines.sort_by { |a, c| -c }.each do |a, c|
+lines.sort_by { |a, c| - ( c[:add] + c[:del] ) }.each do |a, c|
   a = a.obfuscate if obfuscate
   a = a.htmlize if htmlize
   if verbose
-    puts "#{a}: #{c} lines of diff"
+    printf "%-40s Tot: %7d, Dif: %7d, Add: %7d, Del: %7d\n", a, c[:add] + c[:del], c[:add] - c[:del], c[:add], c[:del]
   else
     puts a
   end
