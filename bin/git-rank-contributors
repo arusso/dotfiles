@@ -22,15 +22,9 @@
 ## You can find the GNU General Public License at:
 ##   http://www.gnu.org/licenses/
 
-class String
-  def obfuscate; gsub(/@/, " at the ").gsub(/\.(\w+)(>|$)/, ' dot \1s\2') end
-  def htmlize; gsub("&", "&amp;").gsub("<", "&lt;").gsub(">", "&gt;") end
-end
-
 lines = {}
+commits = {}
 verbose = ARGV.delete("-v")
-obfuscate = ARGV.delete("-o")
-htmlize = ARGV.delete("-h")
 
 author = nil
 state = :pre_author
@@ -42,6 +36,8 @@ state = :pre_author
     lines[author] ||= {}
     lines[author][:add] ||= 0
     lines[author][:del] ||= 0
+    commits[author] ||= 0
+    commits[author] += 1
   when state == :post_author && l =~ /^\+\+\+/
     state = :in_diff
   when state == :in_diff && l =~ /^\+/
@@ -54,10 +50,8 @@ state = :pre_author
 end
 
 lines.sort_by { |a, c| - ( c[:add] + c[:del] ) }.each do |a, c|
-  a = a.obfuscate if obfuscate
-  a = a.htmlize if htmlize
   if verbose
-    printf "%-40s Tot: %7d, Dif: %7d, Add: %7d, Del: %7d\n", a, c[:add] + c[:del], c[:add] - c[:del], c[:add], c[:del]
+    printf "%-40s Tot: %7d, Dif: %7d, Add: %7d, Del: %7d, Cmt: %7d\n", a, c[:add] + c[:del], c[:add] - c[:del], c[:add], c[:del], commits[a]
   else
     puts a
   end
