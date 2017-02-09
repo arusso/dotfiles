@@ -14,3 +14,9 @@ Welcome to my dotfiles. I try to keep them tidy, but you know, they are just
 * **USE_GPG_AGENT**: Set to 0 to disable ssh agent
 * **SSH_CACHE_TTL**: How long in seconds that the gpg-agent or ssh-agent should
                     cache ssh keys.
+
+## TODO
+
+- [ ] Move configuration data somewhere under $HOME/.config/ ($HOME/.config/env?)
+- [ ] Create installation script to speed up deployment
+- [ ] Create a configuration utility to help set various flags
