@@ -6,7 +6,7 @@ function PreCommand() {
   unset AT_PROMPT
 
    # Do stuff.
-   [[ $USE_GPG_AGENT -eq 1 ]] && echo UPDATESTARTUPTTY | gpg-connect-agent 2>&1 >/dev/null
+   [[ $DISABLE_SSH_AGENT_SETUP -ne 1 && $USE_GPG_AGENT -eq 1 ]] && echo UPDATESTARTUPTTY | gpg-connect-agent 2>&1 >/dev/null
 
   # append new entries to histfile from histlist
   #history -a
