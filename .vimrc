@@ -5,11 +5,15 @@ set nocompatible
 filetype off
 
 " setup vundle
+"
+" TODO: get rid of the first line (the old way of doing things) once all my
+" other 'stations are updated.
 set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " vundle likes to manage vundle
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle'
 
 " gist support
 "Plugin 'mattn/webapi-vim'
