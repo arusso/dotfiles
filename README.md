@@ -10,10 +10,11 @@ Welcome to my dotfiles. I try to keep them tidy, but you know, they are just
 
 ## Environment Variables
 
-* **DISABLE_SSH_AGENT_SETUP**: (Default: unset) Disable setup and customization of ssh-agent/gpg-agent.
 * **SIMPLE_PROMPT**: (Default: 0) Disables fancy prompts.
-* **SSH_CACHE_TTL**: (Default: 1800) How long in seconds that the gpg-agent or ssh-agent should cache ssh keys.
-* **USE_GPG_AGENT**: (Default: 1) Set to 0 to disable ssh agent
+* **SSH_AGENT_MODE**: (Default: bastion) Set the operation mode of our SSH environment
+* **SSH_AGENT_NAME**: (Default: gpg-agent) Select the agent to use
+* **SSH_AGENT_SSH_AUTH_SOCK**: (Default: $HOME/.ssh_auth_sock) What to set SSH_AUTH_SOCK
+* **SSH_AGENT_CACHE_TTL**: (Default: 1800) How long (in seconds) that an agent caches a key.
 
 ## TODO
 
