@@ -1,99 +1,121 @@
-# default to using gpg-agent
+# Variable: SSH_AGENT_MODE
+#
+# Select your operation mode. One of 'client', 'bastion' or 'none',
+#
+# Determine how to setup your local agent. If set to 'client', it will ensure
+# that your the agent (as determined by SSH_AGENT_NAME) is launched and ready
+# for operation. If set to 'bastion', will simply setup the environment to use a
+# consistent SSH_AUTH_SOCK to avoid breakage across multiple sessions but will
+# not setup any agent. If set to 'none', this code is entirely skipped.
+export SSH_AGENT_MODE=${SSH_AGENT_MODE:=bastion}
 
-GPG_AGENT=$(which gpg-agent)
+# Variable: SSH_AGENT_NAME
+#
+# Select your SSH Agent. One of 'ssh-agent', 'gpg-agent', or 'none'.
+#
+export SSH_AGENT_NAME=${SSH_AGENT_NAME:=gpg-agent}
 
-# Set USE_GPG_AGENT to 1 if you want to disable using gpg-agent, even if it's
-# installed on the system
-USE_GPG_AGENT=${USE_GPG_AGENT:=1}
+# Variable: SSH_AGENT_CACHE_TTL
+#
+# Set a TTL on cache entries for your SSH agent.
+export SSH_AGENT_CACHE_TTL=${SSH_AGENT_CACHE_TTL:=1800}
 
-# Set DISABLE_SSH_AGENT_SETUP to 1 if you want to prevent any modification of
-# the ssh-agent/gpg-agent and related environment. This effectively disables
-# the code in this file. Useful when you're running on a bastion server that
-# doesn't have any keys on it and is just forwarding back to your local agent
-DISABLE_SSH_AGENT_SETUP=${DISABLE_SSH_AGENT_SETUP:=0}
+# Variable: SSH_AGENT_SSH_AUTH_SOCK
+#
+# Set the location of the centralized SSH_AUTH_SOCK_FILE.
+export SSH_AGENT_SSH_AUTH_SOCK="${SSH_AGENT_SSH_AUTH_SOCK:=$HOME/.ssh_auth_sock}"
 
+# Function: setup_ssh_env
+#
+# Setup SSH environment such that a consistent .ssh_auth_sock file is used. This
+# prevents breakage of agent forwarding when using terminal multiplexors like
+# tmux and screen.
+setup_ssh_env() {
+  if [[ $SSH_AUTH_SOCK != "$SSH_AGENT_AUTH_SOCK" ]]; then
+    rm -f $SSH_AGENT_SSH_AUTH_SOCK
+    ln -sf $SSH_AUTH_SOCK $SSH_AGENT_SSH_AUTH_SOCK
+    export SSH_AUTH_SOCK=$SSH_AGENT_SSH_AUTH_SOCK
+  fi
+}
 
-[[ $DISABLE_SSH_AGENT_SETUP -eq 1 ]] && return
-
-# we can't use gpg agent if it's not installed
-if test -z "$GPG_AGENT"; then USE_GPG_AGENT=0; fi
-export GPG_AGENT
-export USE_GPG_AGENT
-
-_gpg_agent=$(which gpg-agent)
-if [ $? -eq 1 ]; then USE_GPG_AGENT=0; fi
-
-export USE_GPG_AGENT
-
+# Function: setup_ssh_agent
+#
+# Setup the standard agent, ssh-agent.
 setup_ssh_agent() {
-  [[ $DISABLE_SSH_AGENT_SETUP -eq 1 ]] && return
-  SSH_CACHE_TTL=${SSH_CACHE_TTL:=1800}
-  _ssh_auth_sock="$HOME/.ssh_auth_sock"
   _ssh_agent_info="$HOME/.ssh_agent_info"
-  if test -L "$_ssh_auth_sock" && kill -0 $(head -n 1 "$_ssh_agent_info" | cut -d= -f2) 2>/dev/null; then
+  if test -L "$SSH_AGENT_SSH_AUTH_SOCK" && kill -0 $(head -n 1 "$_ssh_agent_info" | cut -d= -f2) 2>/dev/null; then
     . "$_ssh_agent_info"
   else
-    eval $(ssh-agent -s -t $SSH_CACHE_TTL) >/dev/null
-    rm -f $_ssh_auth_sock
-    ln -sf $SSH_AUTH_SOCK $_ssh_auth_sock
+    eval $(ssh-agent -s -t $SSH_AGENT_CACHE_TTL) >/dev/null
+    setup_ssh_env
     echo "SSH_AGENT_PID=$SSH_AGENT_PID" > $_ssh_agent_info
     echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $_ssh_agent_info
   fi
   export SSH_AGENT_PID
-  export SSH_AUTH_SOCK=$_ssh_auth_sock
 }
 
+# Function: setup_gpg_agent
+#
+# Setup gpg-agent w/ssh-support.
 setup_gpg_agent() {
-  [[ $DISABLE_SSH_AGENT_SETUP -eq 1 ]] && return
   export GPG_TTY=$(tty)
-  SSH_CACHE_TTL=${SSH_CACHE_TTL:=1800}
   _gpg_agent_info="$HOME/.gpg_agent_info"
-  _ssh_auth_sock="$HOME/.ssh_auth_sock"
   # test to see if we have an existing agent loaded, and load gpg-agent if not
   if test -f "$_gpg_agent_info" && kill -0 $(head -n 1 "$_gpg_agent_info" | cut -d: -f2) 2>/dev/null ; then
     eval $(< "$_gpg_agent_info")
   else
-    eval $(gpg-agent --daemon --enable-ssh-support --write-env-file "$_gpg_agent_info" --default-cache-ttl-ssh $SSH_CACHE_TTL)
+    eval $(gpg-agent --daemon --enable-ssh-support --write-env-file "$_gpg_agent_info" --default-cache-ttl-ssh $SSH_AGENT_CACHE_TTL)
   fi
   export GPG_AGENT_INFO
-  rm -f $_ssh_auth_sock
-  ln -sf $SSH_AUTH_SOCK $_ssh_auth_sock
-  export SSH_AUTH_SOCK=$_ssh_auth_sock
+  setup_ssh_env
   echo UPDATESTARTUPTTY | gpg-connect-agent &>/dev/null
 }
 
+# Function: restart_gpg_agent
+#
+#
+# Restart a hosed gpg-agent
 restart_gpg_agent() {
   killall gpg-agent
   setup_gpg_agent
 }
 
-# TODO: figure out a better way to have gpg-agent track our tty. the benefit of
-#       doing this in particular is we can guarantee that when we type ssh
-#       *locally*, gpg-agent will ask for our pin on a pane that is local.
-#       However, other tools that require us enter our pin, like gpg itself, can
-#       still cause pinentry to try and launch on a pane that is ssh'd
-#       somewhere. In fact, this almost guarantees it will. However, it's fairly
-#       infrequent, so we'll take the tradeoff for now.
-#
-#       A solution I think may work is implementing the prexec pattern in bash,
-#       which can run a command before each command. But for now, this should be
-#       good enough.
-#
-#       https://github.com/rcaloras/bash-preexec
-#ssh() {
-#  if [ $USE_GPG_AGENT -eq 1 ]; then
-#    # make sure we have the latest environment information
-#    setup_gpg_agent
-#    # update our TTY
-#    echo UPDATESTARTUPTTY | gpg-connect-agent &>/dev/null
-#  fi
-#  # now we should ssh away
-#  $(which ssh) "$@"
-#}
-
-if [ $USE_GPG_AGENT -eq 1 ]; then
-  setup_gpg_agent
-else
-  setup_ssh_agent
+# Initialize SSH Environment
+if [[ $SSH_AGENT_MODE == "bastion" ]]; then
+  # no keys on bastions, so disable agents
+  export SSH_AGENT_NAME="none"
 fi
 
+if [ $SSH_AGENT_NAME == "gpg-agent" ]; then
+  # If gpg-agent doesn't exist, send a note and fallback to no agent
+  GPG_AGENT=$(which gpg-agent)
+  if [[ -z $GPG_AGENT ]]; then
+    echo "Warning: gpg-agent not installed! Setting SSH_AGENT_NAME=none"
+    export SSH_AGENT_NAME="none"
+  fi
+  echo "Initializing session to use gpg-agent..."
+
+elif [ $SSH_AGENT_NAME == "ssh-agent" ]; then
+  # Do we need to do anything?
+  echo "Initializing session to use ssh-agent..."
+
+elif [ $SSH_AGENT_NAME != "none" ]; then
+  echo "Invalid SSH_AGENT_NAME (${SSH_AGENT_NAME}). Setting to 'none'"
+  export SSH_AGENT_NAME="none"
+fi
+
+if [[ $SSH_AGENT_NAME == 'none' ]]; then
+  echo "Initializing ssh environment in ${SSH_AGENT_MODE} mode, using no agent"
+else
+  echo "Initializing ssh environment in ${SSH_AGENT_MODE} mode, using agent ${SSH_AGENT_NAME}"
+fi
+
+if [ $SSH_AGENT_MODE == 'client' ]; then
+  if [ $SSH_AGENT_NAME == 'gpg-agent' ]; then
+    setup_gpg_agent
+  elif [ $SSH_AGENT_NAME == 'ssh-agent' ]; then
+    setup_ssh_agent
+  fi
+elif [ $SSH_AGENT_MODE == 'bastion' ]; then
+  setup_ssh_env
+fi
