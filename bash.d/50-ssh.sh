@@ -31,7 +31,7 @@ export SSH_AGENT_SSH_AUTH_SOCK="${SSH_AGENT_SSH_AUTH_SOCK:=$HOME/.ssh_auth_sock}
 # prevents breakage of agent forwarding when using terminal multiplexors like
 # tmux and screen.
 setup_ssh_env() {
-  if [[ $SSH_AUTH_SOCK != "$SSH_AGENT_AUTH_SOCK" ]]; then
+  if [[ $SSH_AUTH_SOCK != "$SSH_AGENT_SSH_AUTH_SOCK" ]]; then
     rm -f $SSH_AGENT_SSH_AUTH_SOCK
     ln -sf $SSH_AUTH_SOCK $SSH_AGENT_SSH_AUTH_SOCK
     export SSH_AUTH_SOCK=$SSH_AGENT_SSH_AUTH_SOCK
