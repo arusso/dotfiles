@@ -25,6 +25,11 @@ export SSH_AGENT_CACHE_TTL=${SSH_AGENT_CACHE_TTL:=1800}
 # Set the location of the centralized SSH_AUTH_SOCK_FILE.
 export SSH_AGENT_SSH_AUTH_SOCK="${SSH_AGENT_SSH_AUTH_SOCK:=$HOME/.ssh_auth_sock}"
 
+# Variable: SSH_AGENT_QUIET
+#
+# Prevent messages from being printed to STDOUT. Can be 'yes' or 'no'
+export SSH_AGENT_QUIET="${SSH_AGENT_QUIET:-yes}"
+
 # Function: setup_ssh_env
 #
 # Setup SSH environment such that a consistent .ssh_auth_sock file is used. This
@@ -73,11 +78,16 @@ setup_gpg_agent() {
 
 # Function: restart_gpg_agent
 #
-#
 # Restart a hosed gpg-agent
 restart_gpg_agent() {
   killall gpg-agent
   setup_gpg_agent
+}
+
+# Function: ssh_agent_log
+ssh_agent_log() {
+  [[ "$SSH_AGENT_QUIET" == "yes" || -z "$PS1" ]] && return
+  echo $@
 }
 
 # Initialize SSH Environment
@@ -90,24 +100,24 @@ if [ $SSH_AGENT_NAME == "gpg-agent" ]; then
   # If gpg-agent doesn't exist, send a note and fallback to no agent
   GPG_AGENT=$(which gpg-agent)
   if [[ -z $GPG_AGENT ]]; then
-    echo "Warning: gpg-agent not installed! Setting SSH_AGENT_NAME=none"
+    ssh_agent_log "Warning: gpg-agent not installed! Setting SSH_AGENT_NAME=none"
     export SSH_AGENT_NAME="none"
   fi
-  echo "Initializing session to use gpg-agent..."
+  ssh_agent_log "Initializing session to use gpg-agent..."
 
 elif [ $SSH_AGENT_NAME == "ssh-agent" ]; then
   # Do we need to do anything?
-  echo "Initializing session to use ssh-agent..."
+  ssh_agent_log "Initializing session to use ssh-agent..."
 
 elif [ $SSH_AGENT_NAME != "none" ]; then
-  echo "Invalid SSH_AGENT_NAME (${SSH_AGENT_NAME}). Setting to 'none'"
+  ssh_gent_log "Invalid SSH_AGENT_NAME (${SSH_AGENT_NAME}). Setting to 'none'"
   export SSH_AGENT_NAME="none"
 fi
 
 if [[ $SSH_AGENT_NAME == 'none' ]]; then
-  echo "Initializing ssh environment in ${SSH_AGENT_MODE} mode, using no agent"
+  ssh_agent_log "Initializing ssh environment in ${SSH_AGENT_MODE} mode, using no agent"
 else
-  echo "Initializing ssh environment in ${SSH_AGENT_MODE} mode, using agent ${SSH_AGENT_NAME}"
+  ssh_agent_log "Initializing ssh environment in ${SSH_AGENT_MODE} mode, using agent ${SSH_AGENT_NAME}"
 fi
 
 if [ $SSH_AGENT_MODE == 'client' ]; then
