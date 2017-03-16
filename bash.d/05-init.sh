@@ -39,5 +39,3 @@ BPurple="\[\033[1;35m\]"
 
 # set ls color scheme on OSX
 export LSCOLORS="Exfxcxdxbxegedabagacad"
-
-[[ -f "$HOME/.bashrc.local-pre" ]] && source "$HOME/.bashrc.local-pre"
