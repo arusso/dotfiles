@@ -5,3 +5,6 @@
 # Ruby Development
 .ruby-version
 .rbenv-gemsets
+
+# Ansible
+*.retry
