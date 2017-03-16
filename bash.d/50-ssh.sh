@@ -110,7 +110,7 @@ elif [ $SSH_AGENT_NAME == "ssh-agent" ]; then
   ssh_agent_log "Initializing session to use ssh-agent..."
 
 elif [ $SSH_AGENT_NAME != "none" ]; then
-  ssh_gent_log "Invalid SSH_AGENT_NAME (${SSH_AGENT_NAME}). Setting to 'none'"
+  ssh_agent_log "Invalid SSH_AGENT_NAME (${SSH_AGENT_NAME}). Setting to 'none'"
   export SSH_AGENT_NAME="none"
 fi
 
