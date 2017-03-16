@@ -18,9 +18,6 @@ if [ -z "$CUSTOM_PATH_SET" ]; then
   export CUSTOM_PATH_SET=1
 fi
 
-# set our ssh cache ttl to 1 hour
-export SSH_CACHE_TTL=3600
-
 # ignore commands that begin with whitespace, or that are duplicates
 # note: we control flushing our history file after each command on 06-preexec.sh
 export HISTCONTROL=ignoreboth
