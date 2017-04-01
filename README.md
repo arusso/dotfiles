@@ -22,6 +22,5 @@ variables in `$HOME/.config/dotfiles/config`
 
 ## TODO
 
-- [ ] Move configuration data somewhere under $HOME/.config/ ($HOME/.config/env?)
 - [ ] Create installation script to speed up deployment
 - [ ] Create a configuration utility to help set various flags
