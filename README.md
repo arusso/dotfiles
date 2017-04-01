@@ -8,9 +8,13 @@ Welcome to my dotfiles. I try to keep them tidy, but you know, they are just
 * Supports gpg-agent as an alternative to ssh-agent when installed
 * Displays battery percentage on OSX for Systems with a battery installed
 
-## Environment Variables
+## Configuration
 
-* **SIMPLE_PROMPT**: (Default: 0) Disables fancy prompts.
+The behavior of our environment can be controlled by setting any one of these
+variables in `$HOME/.config/dotfiles/config`
+
+* **PROMPT_SIMPLE**: (Default: 0) Use a simple prompt
+* **PROMPT_BATTERY_STATUS**: (Default: 1) On supported hosts, show battery status on prompt. This has no effect if `PROMPT_SIMPLE=1`.
 * **SSH_AGENT_MODE**: (Default: bastion) Set the operation mode of our SSH environment
 * **SSH_AGENT_NAME**: (Default: gpg-agent) Select the agent to use
 * **SSH_AGENT_SSH_AUTH_SOCK**: (Default: $HOME/.ssh_auth_sock) What to set SSH_AUTH_SOCK
