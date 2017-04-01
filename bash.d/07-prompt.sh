@@ -32,8 +32,8 @@ function __ps1_battery_percentage() {
   [[ "$PLATFORM" != "OSX" ]] && return
   local _has_battery=$(ioreg -c AppleSmartBattery | grep BatteryInstalled | awk '{print $5}'|tr [:upper:] [:lower:])
   if [ "$_has_battery" == "yes" ] && [[ $PROMPT_BATTERY_STATUS -eq 1 ]]; then
-    local _battery_percentage=$(ioreg -c AppleSmartBattery | grep Capacity | grep -v Legacy| tr '\n' ' | ' | awk '{printf("%.2f%%", $10/$15 * 100)}')
-    echo -en "(${_battery_percentage}) "
+    local _battery_percentage=$(ioreg -c AppleSmartBattery | grep Capacity | grep -v Legacy| tr '\n' ' | ' | awk '{printf("🔋 %.0f%%", $10/$15 * 100)}')
+    echo -en "${_battery_percentage} "
   fi
 }
 
