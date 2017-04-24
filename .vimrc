@@ -39,6 +39,9 @@ let g:syntastic_puppet_puppetlint_args='--no-class_inherits_from_params_class --
 " use frontmatter syntax highlighting
 let g:vim_markdown_frontmatter=1
 
+" disable vim-markdown folding behavior
+let g:vim_markdown_folding_disabled = 1
+
 "" General Options
 
 " Enable filetype plugins
