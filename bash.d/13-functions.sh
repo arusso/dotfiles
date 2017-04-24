@@ -220,4 +220,4 @@ if [ $PLATFORM == 'OSX' ]; then
     runon $target "osascript -e 'tell application \"System Events\" to key code 144 using command down'"
   }
 
-  fi
+fi
