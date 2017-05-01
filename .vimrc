@@ -106,3 +106,8 @@ nnoremap <leader>fixmode :%s/\(=>\s\+\)\([0-9]\+\)\s*\(,\?\)$/\1'\2'\3/g<return>
 
 " incremental search
 set incsearch
+
+" configure tab/whitespace for various file types
+au BufRead,BufNewFile *.py set expandtab ts=4 sw=4
+au BufRead,BufNewFile *.rb set expandtab ts=2 sw=2
+au BufRead,BufNewFile *.pp set expandtab ts=2 sw=2
