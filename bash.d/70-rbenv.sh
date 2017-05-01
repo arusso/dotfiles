@@ -4,5 +4,6 @@ if [[ -z "$BOXEN_HOME" ]]; then
     eval "$(rbenv init -)"
   elif [[ -d "$HOME/.rbenv/bin" ]]; then
     PATH=$HOME/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
   fi
 fi
