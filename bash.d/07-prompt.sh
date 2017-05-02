@@ -1,8 +1,10 @@
 function __ps1_rc() {
   if [ $? -eq 0 ]; then
-    echo -en "$BGreen[✓]$Color_Off"
+    PROMPT_ZERO_RC=${PROMPT_ZERO_RC:-[✓]}
+    echo -en "$BGreen${PROMPT_ZERO_RC}$Color_Off"
   else
-    echo -en "$BRed[✘]$Color_Off"
+    PROMPT_NONZERO_RC=${PROMPT_NONZERO_RC:-[✘]}
+    echo -en "$BRed${PROMPT_ZERO_RC}$Color_Off"
   fi
 }
 
