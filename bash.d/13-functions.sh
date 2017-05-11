@@ -163,6 +163,28 @@ epoch2date() {
   fi
 }
 
+# wrap script w/timing information so we can replay it later
+capture_terminal() {
+  CAPROOT=$HOME/.captures
+  [[ -d "$CAPROOT" ]] || mkdir -p "$CAPROOT"
+
+  CAPNAME=${1-capture-$(date +%s)}
+  CAPDIR="$CAPROOT/$CAPNAME"
+  if [[ -d "$CAPDIR" ]]; then
+      echo "capture ${CAPNAME} already exists!" >&2
+      return 1
+  else
+     mkdir "$CAPDIR"
+  fi
+
+  TIMEFILE="$CAPDIR/time.txt"
+  CAPFILE="$CAPDIR/script.log"
+
+
+  echo "Beginning capture ${CAPNAME}. Type 'exit' to complete!"
+  script --timing="$TIMEFILE" "$CAPFILE" -q
+}
+
 # login to a system and disable bluetooth. this script is useful when
 # using target display mode with a single bluetooth keyboard.
 #
