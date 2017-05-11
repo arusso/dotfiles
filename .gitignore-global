@@ -8,3 +8,7 @@
 
 # Ansible
 *.retry
+
+# Python Development
+.python-version
+*.pyc
