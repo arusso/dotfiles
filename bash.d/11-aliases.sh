@@ -6,6 +6,7 @@ if [[ "$PLATFORM"  == "OSX" ]]; then
   alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 else
   alias ll='ls -hAlp --color=auto'
+  alias dfh='df -hP'
 fi
 
 alias please='sudo !!'
