@@ -4,7 +4,7 @@ if [[ -z "$PYENV_ROOT" ]] && [[ -d $HOME/.pyenv ]]; then
   export PATH="$PYENV_ROOT/bin:$PATH"
 fi
 
-which pyenv
+which pyenv &>/dev/null
 if [[ $? -eq 0 ]]; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
