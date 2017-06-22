@@ -12,3 +12,7 @@
 # Python Development
 .python-version
 *.pyc
+
+# Special Dirs
+nogit/
+.nogit/
