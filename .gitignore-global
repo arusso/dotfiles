@@ -1,6 +1,7 @@
 # General
 *~
 *.swp
+.DS_Store
 
 # Ruby Development
 .ruby-version
