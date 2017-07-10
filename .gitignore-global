@@ -1,19 +1,15 @@
-# General
+# general
 *~
 *.swp
 .DS_Store
-
-# Ruby Development
-.ruby-version
-.rbenv-gemsets
-
-# Ansible
-*.retry
-
-# Python Development
-.python-version
-*.pyc
-
-# Special Dirs
+tmp/
+output/
 nogit/
 .nogit/
+
+# development
+*.retry
+.python-version
+*.pyc
+.ruby-version
+.rbenv-gemsets
