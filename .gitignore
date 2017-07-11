@@ -4,3 +4,4 @@ theme_index
 *~
 bash.d/*.local.sh
 .DS_Store
+install.yml
