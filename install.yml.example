@@ -1,0 +1,18 @@
+---
+'~':
+  - .bashrc
+  - { 'link': '.gitignore', 'target': '.gitignore-global' }
+  - .bash_profile
+  - .gemrc
+  - .git-commit-template
+  - .vimrc
+  - bin/git-autorebase
+  - bin/git-branches
+  - bin/git-cleanup
+  - bin/git-eradicate
+  - bin/git-fatfiles
+  - bin/git-rank-contributors
+  - bin/git-redeploy
+  - bin/git-show-merges
+  - bin/git-wtf
+  - .profile

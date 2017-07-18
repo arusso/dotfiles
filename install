@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+
+import os
+import yaml
+import shutil
+from time import strftime
+from os.path import dirname, realpath, expanduser, basename
+
+
+def install_link(target, link, **kwargs):
+    """install symlinks, backing up existing files"""
+    backupdir = expanduser('~/.config/dotfiles/backups')
+    backupext = '.bak'
+    if kwargs['backupext']:
+        backupext = kwargs['backupext']
+
+    if not os.path.islink(link) or not os.path.samefile(link, target):
+        if not os.path.exists(backupdir):
+            os.mkdir(backupdir)
+
+        print "backing up existing file {}".format(basename(link))
+        try:
+            # TODO: if a symlink, just copy the symlink
+            backupfile = "{}/{}{}".format(backupdir, basename(link), backupext)
+            if os.stat(link):
+                shutil.copy2(link, backupfile)
+                os.unlink(link)
+        except IOError as e:
+            print("unable to backup {} (skipping)".format(l))
+            print e
+            return
+        except OSError as e:
+            # no file means we don't need to back it up
+            pass
+
+        print("linking {} -> {}".format(target, link))
+        os.symlink(target, link)
+    else:
+        print("(skip) link {} already installed...".format(link))
+
+
+if __name__ == '__main__':
+    configdir = dirname(realpath(__file__))
+    backupext = ".bak-{}".format(strftime("%Y%m%d%H%M%S"))
+
+    with open("install.yml", 'r') as stream:
+        try:
+            installdata = yaml.load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
+            exit(1)
+
+    for installdir in installdata.keys():
+        realdir = expanduser(installdir)
+        for link in installdata[installdir]:
+            if type(link) == type(str()):
+                linkpath = "{}/{}".format(realdir, link)
+                targetpath = "{}/{}".format(configdir, link)
+            elif type(link) == type(dict()):
+                linkpath = "{}/{}".format(realdir, link['link'])
+                targetpath = "{}/{}".format(configdir, link['target'])
+
+            install_link(targetpath, linkpath, backupext=backupext)
