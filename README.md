@@ -8,6 +8,16 @@ Welcome to my dotfiles. I try to keep them tidy, but you know, they are just
 * Supports gpg-agent as an alternative to ssh-agent when installed
 * Displays battery percentage on OSX for Systems with a battery installed
 
+## Installation
+
+1. Using install script
+
+(requires python + pyyaml)
+
+Create an `install.yml` (or copy the example) and run `./install`.
+
+2. Symlink desired files into place.
+
 ## Configuration
 
 The behavior of our environment can be controlled by setting any one of these
@@ -24,5 +34,4 @@ variables in `$HOME/.config/dotfiles/config`
 
 ## TODO
 
-- [ ] Create installation script to speed up deployment
 - [ ] Create a configuration utility to help set various flags
