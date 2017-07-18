@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 
 import os
+import time
 import yaml
 import shutil
-from time import strftime
-from os.path import dirname, realpath, expanduser, basename
-
 
 def install_link(target, link, **kwargs):
     """install symlinks, backing up existing files"""
-    backupdir = expanduser('~/.config/dotfiles/backups')
+    backupdir = os.path.expanduser('~/.config/dotfiles/backups')
     backupext = '.bak'
     if kwargs['backupext']:
         backupext = kwargs['backupext']
@@ -18,16 +16,16 @@ def install_link(target, link, **kwargs):
         if not os.path.exists(backupdir):
             os.mkdir(backupdir)
 
-        print "backing up existing file {}".format(basename(link))
+        linkfile = os.path.basename(link)
+        print "backing up existing file {}".format(linkfile)
         try:
             # TODO: if a symlink, just copy the symlink
-            backupfile = "{}/{}{}".format(backupdir, basename(link), backupext)
+            backupfile = "{}/{}{}".format(backupdir, linkfile, backupext)
             if os.stat(link):
                 shutil.copy2(link, backupfile)
                 os.unlink(link)
         except IOError as e:
-            print("unable to backup {} (skipping)".format(l))
-            print e
+            print("(skip) unable to backup {}".format(link))
             return
         except OSError as e:
             # no file means we don't need to back it up
@@ -40,8 +38,8 @@ def install_link(target, link, **kwargs):
 
 
 if __name__ == '__main__':
-    configdir = dirname(realpath(__file__))
-    backupext = ".bak-{}".format(strftime("%Y%m%d%H%M%S"))
+    configdir = os.path.dirname(os.path.realpath(__file__))
+    backupext = ".bak-{}".format(time.strftime("%Y%m%d%H%M%S"))
 
     with open("install.yml", 'r') as stream:
         try:
@@ -51,7 +49,7 @@ if __name__ == '__main__':
             exit(1)
 
     for installdir in installdata.keys():
-        realdir = expanduser(installdir)
+        realdir = os.path.expanduser(installdir)
         for link in installdata[installdir]:
             if type(link) == type(str()):
                 linkpath = "{}/{}".format(realdir, link)
