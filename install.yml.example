@@ -16,3 +16,4 @@
   - bin/git-show-merges
   - bin/git-wtf
   - .profile
+  - .vim/ftplugin/python.vim
