@@ -45,6 +45,8 @@ function __get_ps1_prompt() {
   # setup our prompt
   if [[ $PROMPT_SIMPLE -eq 1 ]]; then
     PS1="\u@\h:\W \$ "
+  elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ $(which powerline-shell.py 2>/dev/null) ]; then
+    PS1="$(~/bin/powerline-shell.py $?)"
   else
     PS1="$(__ps1_battery_percentage)${RC} \u@\h:\W $(__ps1_git_prompt)\$ "
   fi
@@ -53,12 +55,4 @@ function __get_ps1_prompt() {
   PostCommand
 }
 
-function _update_ps1() {
-    PS1="$(~/bin/powerline-shell.py $?)"
-}
-
-if [ $(which powerline-shell.py 2>/dev/null) ]; then
-  PROMPT_COMMAND=_update_ps1
-else
-  PROMPT_COMMAND=__get_ps1_prompt
-fi
+PROMPT_COMMAND=__get_ps1_prompt
