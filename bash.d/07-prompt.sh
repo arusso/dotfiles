@@ -54,10 +54,10 @@ function __get_ps1_prompt() {
 }
 
 function _update_ps1() {
-    PS1="$(~/bin/powerline-shell.py $? 2>/dev/null )"
+    PS1="$(~/bin/powerline-shell.py $?)"
 }
 
-if [ $(which powerline-shell.py) ]; then
+if [ $(which powerline-shell.py 2>/dev/null) ]; then
   PROMPT_COMMAND=_update_ps1
 else
   PROMPT_COMMAND=__get_ps1_prompt
