@@ -54,7 +54,7 @@ function __get_ps1_prompt() {
 }
 
 function _update_ps1() {
-    PS1="$(~/bin/powerline-shell.py $? )"
+    PS1="$(~/bin/powerline-shell.py $? 2>/dev/null )"
 }
 
 if [ $(which powerline-shell.py) ]; then
