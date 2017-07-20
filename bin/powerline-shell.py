@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 
@@ -296,22 +296,6 @@ def add_virtual_env_segment(powerline):
 
 
 add_virtual_env_segment(powerline)
-import subprocess
-
-
-def add_rbenv_segment(powerline):
-    try:
-        p1 = subprocess.Popen(["rbenv", "local"], stdout=subprocess.PIPE)
-        version = p1.communicate()[0].decode("utf-8").rstrip()
-        if len(version) <= 0:
-        	return
-
-        powerline.append(' %s ' % version, Color.VIRTUAL_ENV_FG, Color.VIRTUAL_ENV_BG)
-    except OSError:
-        return
-
-
-add_rbenv_segment(powerline)
 
 def add_username_segment(powerline):
     import os
