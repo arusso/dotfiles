@@ -15,5 +15,8 @@
   - bin/git-redeploy
   - bin/git-show-merges
   - bin/git-wtf
+  - bin/powerline-shell.py
   - .profile
   - .vim/ftplugin/python.vim
+  - .vim/ftplugin/ruby.vim
+  - .vim/ftplugin/puppet.vim
