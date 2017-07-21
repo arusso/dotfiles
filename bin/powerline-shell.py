@@ -6,7 +6,10 @@ import argparse
 import os
 import sys
 
-py3 = sys.version_info.major == 3
+try:
+    py3 = sys.version_info.major == 3
+except:
+    py3 = False
 
 
 def warn(msg):
