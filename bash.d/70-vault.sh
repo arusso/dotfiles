@@ -1,2 +1,2 @@
-VAULT=$(which vault)
-[[ $? -eq 0 ]] && complete -C $VAULT vault
+VAULT="$(which vault)"
+[[ $? -eq 0 ]] && complete -C "$VAULT" vault
