@@ -30,6 +30,8 @@ Plugin 'arusso/vim-colorschemes'
 Plugin 'tpope/vim-bundler'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'airblade/vim-gitgutter'
+Plugin 'fatih/vim-go'
+"
 
 call vundle#end()
 
@@ -106,3 +108,8 @@ nnoremap <leader>fixmode :%s/\(=>\s\+\)\([0-9]\+\)\s*\(,\?\)$/\1'\2'\3/g<return>
 
 " incremental search
 set incsearch
+
+autocmd BufNewFile,BufRead *.go  set syntax=go
+
+" ignore warnings for older VIM versions /w vim-go
+let g:go_version_warning = 0
