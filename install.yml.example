@@ -20,3 +20,4 @@
   - .vim/ftplugin/python.vim
   - .vim/ftplugin/ruby.vim
   - .vim/ftplugin/puppet.vim
+  - .curlrc
