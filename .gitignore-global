@@ -15,3 +15,11 @@ nogit/
 *.pyc
 .ruby-version
 .rbenv-gemsets
+
+# terraform
+.terraform/
+.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
+secret.tf
+creds.tf
