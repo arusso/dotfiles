@@ -36,3 +36,6 @@ BPurple="\[\033[1;35m\]"
 
 # set ls color scheme on OSX
 export LSCOLORS="Exfxcxdxbxegedabagacad"
+
+# disable XON/XOFF flow control (aka. scroll lock)
+stty -ixon
