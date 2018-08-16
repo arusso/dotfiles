@@ -46,6 +46,8 @@ function __get_ps1_prompt() {
   # setup our prompt
   if [[ $PROMPT_SIMPLE -eq 1 ]]; then
     PS1="\u@\h:\W \$ "
+  elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ -x ~/bin/powerline-go ]; then
+    PS1="$(~/bin/powerline-go -error $?)"
   elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ $(which powerline-shell.py 2>/dev/null) ]; then
     PS1="$(~/bin/powerline-shell.py $?)"
   else
