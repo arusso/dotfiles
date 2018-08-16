@@ -47,7 +47,7 @@ function __get_ps1_prompt() {
   if [[ $PROMPT_SIMPLE -eq 1 ]]; then
     PS1="\u@\h:\W \$ "
   elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ -x ~/bin/powerline-go ]; then
-    PS1="$(~/bin/powerline-go -numeric-exit-codes -error $? -colorize-hostname -path-aliases ${PROMPT_POWERLINE_ALIASES})"
+    PS1="$(~/bin/powerline-go -numeric-exit-codes -error $? -colorize-hostname -path-aliases ${PROMPT_POWERLINE_ALIASES} | sed 's/\s\+$/\ /')"
   elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ $(which powerline-shell.py 2>/dev/null) ]; then
     PS1="$(~/bin/powerline-shell.py $?)"
   else
