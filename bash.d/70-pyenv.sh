@@ -7,5 +7,5 @@ fi
 which pyenv &>/dev/null
 if [[ $? -eq 0 ]]; then
   eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
+  eval "$(pyenv virtualenv-init - 2>/dev/null)"
 fi
