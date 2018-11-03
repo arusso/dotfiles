@@ -65,7 +65,9 @@ set autoread
 set wildignore=*.o,*~,*.pyc
 
 "" Interface
-colorscheme desert
+let g:solarized_termcolors = 256
+"colorscheme desert
+colorscheme solarized
 set background=dark
 
 "line numbers
