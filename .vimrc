@@ -15,22 +15,26 @@ call vundle#begin()
 " vundle likes to manage vundle
 Plugin 'VundleVim/Vundle.vim'
 
+" general vim enhancements
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'arusso/vim-puppet'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'godlygeek/tabular'
 Plugin 'arusso/vim-colorschemes'
+
+" plugins for external tools
+Plugin 'tpope/vim-fugitive'
+Plugin 'arusso/vim-puppet'
 Plugin 'tpope/vim-bundler'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
 
+" plugins for languages
+Plugin 'fatih/vim-go'
+
+" platform specific plugins
 if s:uname == "Darwin"
   Plugin 'rizzatti/dash.vim'
 endif
-"
 
 call vundle#end()
 
