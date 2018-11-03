@@ -38,7 +38,6 @@ endif
 
 call vundle#end()
 
-"let syntastic_puppet_lint_arguments='--no-class_inherits_from_params_class --no-80chars-check'
 let g:syntastic_puppet_puppetlint_args='--no-class_inherits_from_params_class --no-80chars-check'
 
 " use frontmatter syntax highlighting
