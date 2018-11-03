@@ -4,6 +4,9 @@
 set nocompatible
 filetype off
 
+" used to detect our platform
+let s:uname = system("echo -n \"$(uname)\"")
+
 " setup vundle
 "
 " TODO: get rid of the first line (the old way of doing things) once all my
