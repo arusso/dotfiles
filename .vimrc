@@ -31,6 +31,11 @@ Plugin 'tpope/vim-bundler'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'airblade/vim-gitgutter'
 Plugin 'fatih/vim-go'
+Plugin 'pearofducks/ansible-vim'
+
+if s:uname == "Darwin"
+  Plugin 'rizzatti/dash.vim'
+endif
 "
 
 call vundle#end()
