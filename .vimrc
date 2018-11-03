@@ -15,21 +15,15 @@ call vundle#begin()
 " vundle likes to manage vundle
 Plugin 'VundleVim/Vundle.vim'
 
-" gist support
-"Plugin 'mattn/webapi-vim'
-"Plugin 'mattn/gist-vim'
-
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'tpope/vim-fugitive'
-"Plugin 'mv/mv-vim-puppet'
 Plugin 'arusso/vim-puppet'
 Plugin 'godlygeek/tabular'
 Plugin 'arusso/vim-colorschemes'
 Plugin 'tpope/vim-bundler'
 Plugin 'plasticboy/vim-markdown'
-"Plugin 'airblade/vim-gitgutter'
 Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
 
