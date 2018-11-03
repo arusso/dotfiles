@@ -9,14 +9,11 @@ let s:uname = system("echo -n \"$(uname)\"")
 
 " setup vundle
 "
-" TODO: get rid of the first line (the old way of doing things) once all my
-" other 'stations are updated.
-set rtp+=~/.vim/bundle/vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " vundle likes to manage vundle
-Plugin 'VundleVim/Vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " gist support
 "Plugin 'mattn/webapi-vim'
