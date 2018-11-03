@@ -1,7 +1,7 @@
 #
 # Go Language Configuration
 
-export GOPATH="$HOME/src/golang"
+export GOPATH="$HOME/go"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
 # configure goenv
