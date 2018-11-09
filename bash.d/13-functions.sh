@@ -61,10 +61,6 @@ function replace_text() {
   fi
 }
 
-function check_erb() {
-  erb -P -x -T '-' $1 | ruby -c
-}
-
 get_abs_filename() {
   # $1 : relative filename
   echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
