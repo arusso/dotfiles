@@ -56,15 +56,16 @@ runon() {
   fi
 }
 
-# cool snippet a friend showed me. takes a diff of a file on two different
-# hosts, from this host.
-assdiff() {
+# Function: remote_diff
+# Usage: remote_diff <filename> <host a> <host b>
+#
+#   Compare the same file on two different hosts.
+#
+remote_diff() {
   if [[ "$1" == "" || "$2" == "" ]]; then
-    echo "usage: assdiff <filename> <host a> <host b>"
-    echo ""
-    echo "Example:"
-    echo "  Take a diff of /etc/hosts on hostA and hostB:"
-    echo "  $ assdiff /etc/hosts hostA hostB"
+    echo "usage: $0 FILENAME HOST_A HOST_B"
+    echo
+    echo "Compare the same file on two different hosts"
   else
     diff -u <(ssh $2 "sudo cat $1") <(ssh $3 "sudo cat $1")
   fi
