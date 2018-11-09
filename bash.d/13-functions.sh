@@ -72,6 +72,10 @@ fold2() {
   TEST=$(which test)
   if $TEST "$PLATFORM" = "OSX"; then
     SED=$(which gsed)
+    if [[ -z "$SED" ]]; then
+      echo "couldn't find gsed! try 'homebrew install gnu-sed'"
+      return
+    fi
   else
     SED=$(which sed)
   fi
