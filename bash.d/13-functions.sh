@@ -15,7 +15,6 @@ newpass() {
   echo $PASS
 }
 
-hourglass(){ trap 'tput cnorm' EXIT INT;local s=$(($SECONDS +$1));(tput civis;while [[ $SECONDS -lt $s ]];do for f in '|' '\' '-' '/';do echo -n "$f" && sleep .2s && echo -n $'\b';done;done;);tput cnorm;}
 
 # Function: toggle_set
 # Usage: toggle_set <0|1> "<value if 1>" "<value if 0>"
