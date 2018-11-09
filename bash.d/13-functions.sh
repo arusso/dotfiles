@@ -1,21 +1,3 @@
-if [[ "$PLATFORM"  == "OSX" ]]; then
-  BASE64_BREAK="--break=0"
-elif [[ "$PLATFORM" == "Linux" ]]; then
-  BASE64_BREAK="-w 0"
-else
-  BASE64_BREAK=
-fi
-
-newpass() {
-  OSSL=$(which openssl)
-  if [ -x $OSSL ]; then PASS=$($OSSL rand -base64 32); PASS=${PASS:0:24};
-  else
-    PASS=$(read -s salt; echo $salt $(date +%s) | shasum -a 512 | base64 ${BASE64_BREAK} | cut -c -24)
-  fi
-  echo $PASS
-}
-
-
 # Function: toggle_set
 # Usage: toggle_set <0|1> "<value if 1>" "<value if 0>"
 # Description:
