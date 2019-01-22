@@ -6,8 +6,12 @@ tmp/
 output/
 nogit/
 .nogit/
+
 # apple resource fork files
 ._*
+
+# nfs locks
+.nfs*
 
 # development
 *.retry
