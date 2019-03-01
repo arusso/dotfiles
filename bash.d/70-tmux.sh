@@ -8,6 +8,6 @@ if test -z "$TMUXIFIER_INIT"; then
     git clone https://github.com/arusso/tmuxifier $HOME/.tmuxifier
   fi
 
-  export PATH="$PATH:$HOME/.tmuxifier/bin"
+  :appendpath "$HOME/.tmuxifier/bin"
   export TMUXIFIER_INIT=1
 fi

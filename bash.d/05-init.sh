@@ -12,11 +12,8 @@ case `uname` in
 esac
 export PLATFORM
 
-# set our custom path
-if [ -z "$CUSTOM_PATH_SET" ]; then
-  export PATH="$HOME/bin:$PATH"
-  export CUSTOM_PATH_SET=1
-fi
+# add $HOME/bin to our path
+:prependpath "$HOME/bin"
 
 # ignore commands that begin with whitespace, or that are duplicates
 # note: we control flushing our history file after each command on 06-preexec.sh
