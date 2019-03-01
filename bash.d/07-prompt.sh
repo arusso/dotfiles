@@ -9,7 +9,7 @@ function __ps1_rc() {
 }
 
 function __ps1_git_prompt() {
-  [[ $(which git 2>/dev/null) ]] || return
+  [[ $(:binexists git) -eq 1 ]] || return
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ (N|n)ot\ a\ git\ repo ]]; then
     if [[ "$git_status" =~ nothing\ to\ commit ]]; then
