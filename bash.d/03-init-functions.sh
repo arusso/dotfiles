@@ -27,3 +27,10 @@
   local path="${1}"
   [[ ":${PATH}:" == *":${path}:"* ]] && echo 0 || echo 1
 }
+
+# Given a binary name, return 0 if it's in our PATH and 1 if it is not
+:binexists() {
+  local bin="${1}"
+  which "$bin" &>/dev/null
+  [[ $? -eq 0 ]] && echo 0 || echo 1
+}
