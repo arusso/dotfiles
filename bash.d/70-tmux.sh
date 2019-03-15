@@ -11,3 +11,6 @@ if test -z "$TMUXIFIER_INIT"; then
   :appendpath "$HOME/.tmuxifier/bin"
   export TMUXIFIER_INIT=1
 fi
+
+# resume tmux when it accidentally gets backgrounded via ctrl-z
+fix_tmux() { pkill -CONT tmux; }
