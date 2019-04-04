@@ -95,3 +95,9 @@ epoch2date() {
     date -d @$epoch
   fi
 }
+
+# normalize a mac address to form EUI64 form.
+nmac ()
+{
+  echo $1 | sed -e 's/[.:]//g;s/.\{2\}/&:/g;s/:$//;s/./\U&/g'
+}
