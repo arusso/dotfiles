@@ -99,5 +99,6 @@ epoch2date() {
 # normalize a mac address to form EUI64 form.
 nmac ()
 {
-  echo $1 | sed -e 's/[.:]//g;s/.\{2\}/&:/g;s/:$//;s/./\U&/g'
+  [[ "$PLATFORM" -eq "OSX" ]] && SED=$(which gsed) || SED=$(which sed)
+  echo $1 | $SED -e 's/[.:]//g;s/.\{2\}/&:/g;s/:$//;s/./\U&/g'
 }
