@@ -10,3 +10,18 @@ if [[ $(:binexists pyenv) -eq 0 ]]; then
     eval "$(pyenv virtualenv-init - 2>/dev/null)"
   fi
 fi
+
+pyenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  activate|deactivate|rehash|shell)
+    eval "$(pyenv "sh-$command" "$@")";;
+  *)
+    command pyenv "$command" "$@";;
+  esac
+}
