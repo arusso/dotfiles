@@ -19,3 +19,12 @@ fi
 
 # resume tmux when it accidentally gets backgrounded via ctrl-z
 fix_tmux() { pkill -CONT tmux; }
+
+# update the global tmux environment
+tmux-update-environment() {
+  if [[ -z "$1" ]]; then
+    echo "you must specify an env var to update"
+    return
+  fi
+  tmux set-environment -g "$1" "$(printenv "$1")"
+}
