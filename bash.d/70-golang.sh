@@ -3,10 +3,9 @@
 GOPATH="$HOME/go"
 GO=$(which go 2>/dev/null)
 if [[ ! -z "$GO" ]]; then
-  GOENV="$(which goenv 2>/dev/null)"
-  if [[ -x "$GOENV" ]] && [[ -d "$HOME/.goenv" ]]; then
-    export GOENV_ROOT="$HOME/.goenv"
-    :prependpath "$GOENV/bin"
+  if [[ -d "$HOME/.goenv" ]]; then
+    :prependpath "$HOME/.goenv/bin"
+    GOENV_ROOT="$HOME/.goenv"
     [[ $(:inpath "$HOME/.goenv/shims") -eq 1 ]] && eval "$(goenv init -)"
   elif [[ -d "$GOPATH" ]] && [[ -x "$GO" ]]; then
     :prependpath "$(go env GOPATH)/bin"
