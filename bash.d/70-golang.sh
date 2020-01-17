@@ -29,5 +29,3 @@ if [[ ! -z "$GO" ]]; then
 fi
 
 alias gg="go get -d"
-
-export GO111MODULE=on
