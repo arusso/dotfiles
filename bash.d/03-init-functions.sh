@@ -34,3 +34,11 @@
   which "$bin" &>/dev/null
   [[ $? -eq 0 ]] && echo 0 || echo 1
 }
+
+# Replace an exact path match for another
+:replacepath() {
+  local orig="${1}"
+  local new="${2}"
+
+  PATH="${PATH//$orig/$new}"
+}
