@@ -102,3 +102,23 @@ nmac ()
   [[ "$PLATFORM" -eq "OSX" ]] && SED=$(which gsed 2>/dev/null) || SED=$(which sed 2>/dev/null)
   echo $1 | $SED -e 's/[.:]//g;s/.\{2\}/&:/g;s/:$//;s/./\U&/g'
 }
+
+# print a histogram of file size distribution
+#
+# based on: https://superuser.com/a/1100340
+#
+# example: ls -l | fshisto
+fshisto() {
+  awk '{ n=int(log($5)/log(2));                                         \
+         if (n<10) n=10;                                                \
+         size[n]++ }                                                    \
+     END { for (i in size) printf("%d %d\n", 2^i, size[i]) }'           \
+  | sort -n                                                             \
+  | awk 'function human(x) { x[1]/=1024;                                \
+                            if (x[1]>=1024) { x[2]++;                   \
+                                              human(x) } }              \
+        { a[1]=$1;                                                      \
+          a[2]=0;                                                       \
+          human(a);                                                     \
+          printf("%3d%s: %6d\n", a[1],substr("kMGTEPYZ",a[2]+1,1),$2) }'
+}
