@@ -19,6 +19,7 @@ nogit/
 *.pyc
 .ruby-version
 .rbenv-gemsets
+.go-version
 
 # terraform
 .terraform/
