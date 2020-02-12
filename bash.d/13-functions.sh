@@ -109,16 +109,50 @@ nmac ()
 #
 # example: ls -l | fshisto
 fshisto() {
-  awk '{ n=int(log($5)/log(2));                                         \
-         if (n<10) n=10;                                                \
-         size[n]++ }                                                    \
-     END { for (i in size) printf("%d %d\n", 2^i, size[i]) }'           \
-  | sort -n                                                             \
-  | awk 'function human(x) { x[1]/=1024;                                \
-                            if (x[1]>=1024) { x[2]++;                   \
-                                              human(x) } }              \
-        { a[1]=$1;                                                      \
-          a[2]=0;                                                       \
-          human(a);                                                     \
-          printf("%3d%s: %6d\n", a[1],substr("kMGTEPYZ",a[2]+1,1),$2) }'
+  awk '
+  {
+    n=int(log($5)/log(2));
+    if (n<10) n=10;
+    size[n]++;
+    contribution[n]+=$5;
+    total+=$5;
+  } END {
+      for (i in size) {
+        printf(                  \
+          "%d %d %d %f %f\n",    \
+          2^i,                   \
+          size[i],               \
+          contribution[i],       \
+          contribution[i]/total, \
+          1-cumulative_contribution/total);
+          cumulative_contribution+=contribution[i];
+      }
+  }' \
+  | sort -n                                                               \
+  | awk '
+    function human(x) {
+      x[1]/=1024;                                  \
+      if (x[1]>=1024) { x[2]++; human(x) }
+    }
+    BEGIN {
+      printf("%4s: %6s %6s %7s %7s\n", "size", "count", "total", "percent", "subpcnt")
+    }
+    {
+      a[1]=$1
+      a[2]=0
+      human(a);
+      b[1]=$3;
+      b[2]=0;
+      human(b);
+      $4;
+      printf(                                 \
+        "%3d%s: %6d %5d%s %6.2f%% %6.2f%%\n", \
+        a[1],                                 \
+        substr("kMGTEPYZ",a[2]+1,1),          \
+        $2,                                   \
+        b[1],                                 \
+        substr("kMGTEPYZ",b[2]+1,1),          \
+        $4*100,                               \
+        $5*100)
+    }'
 }
