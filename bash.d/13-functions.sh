@@ -110,6 +110,11 @@ nmac ()
 # example: ls -l | fshisto
 fshisto() {
   awk '
+  function cmp_num_idx(i1, v1, i2, v2)
+  {
+    # numerical index comparison, ascending order
+    return (i1 - i2)
+  }
   {
     n=int(log($5)/log(2));
     if (n<10) n=10;
@@ -117,24 +122,24 @@ fshisto() {
     contribution[n]+=$5;
     total+=$5;
   } END {
-      for (i in size) {
-        printf(                  \
-          "%d %d %d %f %f\n",    \
-          2^i,                   \
-          size[i],               \
-          contribution[i],       \
-          contribution[i]/total, \
-          1-cumulative_contribution/total);
-          cumulative_contribution+=contribution[i];
-      }
+    PROCINFO["sorted_in"] = "cmp_num_idx"
+    for (i in size) {
+      printf(                  \
+        "%d %d %d %f %f\n",    \
+        2^i,                   \
+        size[i],               \
+        contribution[i],       \
+        contribution[i]/total, \
+        1-cumulative_contribution/total);
+        cumulative_contribution+=contribution[i];
+    }
   }' \
   | sort -n                                                               \
   | awk '
     function human(x) {
       x[1]/=1024;                                  \
       if (x[1]>=1024) { x[2]++; human(x) }
-    }
-    BEGIN {
+    } BEGIN {
       printf("%4s: %6s %6s %7s %7s\n", "size", "count", "total", "percent", "subpcnt")
     }
     {
