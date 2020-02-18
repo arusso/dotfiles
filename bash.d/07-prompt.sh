@@ -1,3 +1,5 @@
+POWERLINE="$(which powerline-go)"
+
 function __ps1_rc() {
   if [ $? -eq 0 ]; then
     PROMPT_ZERO_RC=${PROMPT_ZERO_RC:-[✓]}
@@ -48,10 +50,8 @@ function __get_ps1_prompt() {
     PS1="\$ "
   elif [[ $PROMPT_SIMPLE -eq 1 ]]; then
     PS1="\u@\h:\W \$ "
-  elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ -x ~/bin/powerline-go ]; then
-    PS1="$(~/bin/powerline-go -numeric-exit-codes -error $? -colorize-hostname -path-aliases ${PROMPT_POWERLINE_ALIASES} | sed 's/\s\+$/\ /')"
-  elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ $(which powerline-shell.py 2>/dev/null) ]; then
-    PS1="$(~/bin/powerline-shell.py $?)"
+  elif [[ $PROMPT_POWERLINE -ne 0 ]] && [ -x "$POWERLINE" ]; then
+    PS1="$("$POWERLINE" -numeric-exit-codes -error $? -colorize-hostname -path-aliases ${PROMPT_POWERLINE_ALIASES} | sed 's/\s\+$/\ /')"
   else
     PS1="$(__ps1_battery_percentage)${RC} \u@\h:\W $(__ps1_git_prompt)\$ "
   fi
