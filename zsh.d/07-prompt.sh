@@ -1,5 +1,12 @@
+powerline_lmods=(-modules venv,user,host,ssh,cwd,perms,jobs,exit,root)
+powerline_rmods=(-modules-right git -eval)
+powerline_path_aliases=(\~/src=@SRC)
+powerline_path_aliases+=(\~/src/ansible=@ANSIBLE)
+powerline_path_aliases=(-path-aliases $(:joinarr , $powerline_path_aliases))
+powerline_args=(-shell zsh -numeric-exit-codes -colorize-hostname)
+
 function powerline_precmd() {
-  PS1="$(powerline-go -error $? -shell zsh -numeric-exit-codes -colorize-hostname)"
+  eval "$(powerline-go -error $? $powerline_args $powerline_lmods $powerline_rmods $powerline_path_aliases)"
 }
 
 function install_powerline_precmd() {
