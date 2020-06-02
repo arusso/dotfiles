@@ -1,9 +1,8 @@
 # load our zsh configs
 READLINK=$(which readlink)
-[[ "$(uname)" == "Linux" ]] && READLINK="$READLINK -e"
-export READLINK
+[[ "$(uname)" == "Linux" ]] && READLINK=($READLINK -e)
 
-export DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
+DOTFILES_DIR=$(dirname $($READLINK ~/.bashrc))
 
 for file in "$DOTFILES_DIR"/zsh.d/*.sh; do
   . "$file"
