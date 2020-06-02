@@ -21,5 +21,5 @@ export LSCOLORS='Exgxfxcxdxdxhbadbxbx'
 export LS_OPTIONS='--color=auto'
 
 # add $HOME/bin and $HOME/.local/bin to our path
-[[ -d "$HOME"/.local/bin ]] && :appendpath "$HOME/.local/bin"
+[[ -d "$HOME"/.local/bin ]] && :prependpath "$HOME/.local/bin"
 :prependpath "$HOME/bin"
