@@ -1,5 +1,5 @@
 function powerline_precmd() {
-  PS1="$(powerline-go -error $? -shell zsh)"
+  PS1="$(powerline-go -error $? -shell zsh -numeric-exit-codes -colorize-hostname)"
 }
 
 function install_powerline_precmd() {
