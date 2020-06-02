@@ -11,8 +11,8 @@ setopt inc_append_history # append as commands are called
 setopt share_history      # share a history file
 setopt hist_no_store      # do not store calls to the history cmd
 
-[[ -d "$HOME/.zsh_history" ]] && mkdir $HOME/.zsh_history
-HISTFILE="$HOME/.zsh_history/$HOSTNAME-$(date +Ymd)"
+[[ ! -d "$HOME/.zsh_history" ]] && mkdir "$HOME"/.zsh_history
+HISTFILE="$HOME/.zsh_history/$HOSTNAME-$(date +%Y%m%d)"
 HISTSIZE=500
 SAVEHIST=200000
 
