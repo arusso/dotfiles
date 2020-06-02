@@ -12,7 +12,8 @@ case `uname` in
 esac
 export PLATFORM
 
-# add $HOME/bin to our path
+# add $HOME/bin and $HOME/.local/bin to our path
+[[ -d "$HOME"/.local/bin ]] && :appendpath "$HOME/.local/bin"
 :prependpath "$HOME/bin"
 
 # ignore commands that begin with whitespace, or that are duplicates
