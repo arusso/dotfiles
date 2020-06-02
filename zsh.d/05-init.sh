@@ -19,3 +19,7 @@ SAVEHIST=200000
 # ls config
 export LSCOLORS='Exgxfxcxdxdxhbadbxbx'
 export LS_OPTIONS='--color=auto'
+
+# add $HOME/bin and $HOME/.local/bin to our path
+[[ -d "$HOME"/.local/bin ]] && :appendpath "$HOME/.local/bin"
+:prependpath "$HOME/bin"
