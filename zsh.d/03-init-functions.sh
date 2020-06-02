@@ -42,3 +42,10 @@
 
   PATH="${PATH//$orig/$new}"
 }
+
+# Join an array
+:joinarr() {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
