@@ -23,3 +23,6 @@ export LS_OPTIONS='--color=auto'
 # add $HOME/bin and $HOME/.local/bin to our path
 [[ -d "$HOME"/.local/bin ]] && :prependpath "$HOME/.local/bin"
 :prependpath "$HOME/bin"
+
+[[ ${fpath[(ie)$DOTFILES_DIR]} -le ${#fpath} ]] && fpath=($DOTFILES_DIR/zsh.d/func $fpath)
+autoload -Uz compinit && compinit
