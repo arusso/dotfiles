@@ -1,4 +1,3 @@
 # alias definitions
-alias ls='ls -ahF'
-alias ll='ls -alhF'
-
+alias ls='ls --color=auto -ahF'
+alias ll='ls --color=auto -alhF'
