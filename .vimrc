@@ -21,8 +21,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'godlygeek/tabular'
 Plugin 'arusso/vim-colorschemes'
+Plugin 'majutsushi/tagbar'
 
-" plugins for external tools
+" plugins for external tools / languages
 Plugin 'tpope/vim-fugitive'
 Plugin 'arusso/vim-puppet'
 Plugin 'tpope/vim-bundler'
@@ -30,6 +31,7 @@ Plugin 'pearofducks/ansible-vim'
 
 " plugins for languages
 Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
 
 " platform specific plugins
 if s:uname == "Darwin"
