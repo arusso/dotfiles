@@ -22,7 +22,16 @@ export LS_OPTIONS='--color=auto'
 
 # add $HOME/bin and $HOME/.local/bin to our path
 [[ -d "$HOME"/.local/bin ]] && :prependpath "$HOME/.local/bin"
-:prependpath "$HOME/bin"
+
+# Ensure my $HOME/bin directory comes before system bin dirs.
+bidx=$path[(i)/bin]
+hidx=$path[(i)$HOME/bin]
+ubidx=$path[(i)/usr/bin]
+ulbidx=$path[(i)/usr/local/bin]
+if [[ $hidx -lt $ubidx ]] || [[ $hidx -lt $bidx || $hidx -lt $ulbidx ]]; then
+  path=(${path:#$HOME/bin})
+  path=($HOME/bin $path)
+fi
 
 [[ ${fpath[(ie)$DOTFILES_DIR]} -le ${#fpath} ]] || fpath=($DOTFILES_DIR/zsh.d/func $fpath)
 autoload -Uz compinit && compinit
