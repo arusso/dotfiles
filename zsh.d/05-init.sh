@@ -37,3 +37,6 @@ fi
 
 [[ ${fpath[(ie)$DOTFILES_DIR]} -le ${#fpath} ]] || fpath=($DOTFILES_DIR/zsh.d/func $fpath)
 autoload -Uz compinit && compinit
+
+EDITOR=vim
+VISUAL=vim
