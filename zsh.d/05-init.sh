@@ -33,6 +33,8 @@ ulbidx=$path[(i)/usr/local/bin]
 if [[ $hidx -lt $ubidx ]] || [[ $hidx -lt $bidx || $hidx -lt $ulbidx ]]; then
   path=(${path:#$HOME/bin})
   path=($HOME/bin $path)
+elif [[ $hidx -gt ${#path} ]]; then
+  path=($HOME/bin $path)
 fi
 
 [[ ${fpath[(ie)$DOTFILES_DIR]} -le ${#fpath} ]] || fpath=($DOTFILES_DIR/zsh.d/func $fpath)
