@@ -1,4 +1,4 @@
-powerline_lmods=(-modules venv,user,host,ssh,cwd,perms,jobs,exit,root)
+powerline_lmods=(-modules venv,goenv,user,host,ssh,cwd,perms,jobs,exit,root)
 powerline_rmods=(-modules-right git -eval)
 powerline_path_aliases=(\~/src=@SRC)
 powerline_path_aliases+=(\~/src/ansible=@ANSIBLE)
