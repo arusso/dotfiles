@@ -28,6 +28,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'arusso/vim-puppet'
 Plugin 'tpope/vim-bundler'
 Plugin 'pearofducks/ansible-vim'
+Plugin 'glench/vim-jinja2-syntax'
 
 " plugins for languages
 Plugin 'fatih/vim-go'
