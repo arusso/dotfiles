@@ -23,6 +23,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'arusso/vim-colorschemes'
 Plugin 'majutsushi/tagbar'
 
+" hashi stuffz
+Plugin 'hashivim/vim-terraform'
+
 " plugins for external tools / languages
 Plugin 'tpope/vim-fugitive'
 Plugin 'arusso/vim-puppet'
