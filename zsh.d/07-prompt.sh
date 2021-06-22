@@ -10,15 +10,16 @@ function sp() {
 (( ! ${+preexec_functions} )) && preexec_functions=()
 
 function prompter_precmd() {
+  rc=$?
   if [[ "$PROMPTER" == "powerline" ]]; then
-    eval "$(powerline-go -error $? $powerline_args $powerline_lmods $powerline_rmods $powerline_path_aliases)"
+    eval "$(powerline-go -error $rc $powerline_args $powerline_lmods $powerline_rmods $powerline_path_aliases)"
   elif [[ "$PROMPTER" == "starship" ]]; then
     setopt promptsubst
     PROMPT='$("/usr/local/bin/starship" prompt --keymap="$KEYMAP" --status="$STARSHIP_CMD_STATUS" --cmd-duration="$STARSHIP_DURATION" --jobs="$STARSHIP_JOBS_COUNT")'
     RPROMPT=''
 
     # Save the status, because commands in this pipeline will change $?
-    STARSHIP_CMD_STATUS=$?
+    STARSHIP_CMD_STATUS=$rc
 
     # Compute cmd_duration, if we have a time to consume, otherwise clear the
     # previous duration
