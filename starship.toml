@@ -1,0 +1,22 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red) "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
+[[battery.display]]
+threshold = 20
+style = "bold 214" #orange
+
+[[battery.display]]
+threshold = 40
+style = "bold yellow"
