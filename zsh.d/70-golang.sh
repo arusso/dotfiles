@@ -29,3 +29,8 @@ if [[ ! -z "$GO" ]]; then
 fi
 
 alias gg="go get -d"
+
+func getgolint() {
+  local version="${1:-latest}"
+  go install golang.org/x/lint/golint@$version
+}
