@@ -15,7 +15,8 @@ function prompter_precmd() {
     eval "$(powerline-go -error $rc $powerline_args $powerline_lmods $powerline_rmods $powerline_path_aliases)"
   elif [[ "$PROMPTER" == "starship" ]]; then
     setopt promptsubst
-    PROMPT='$("/usr/local/bin/starship" prompt --keymap="$KEYMAP" --status="$STARSHIP_CMD_STATUS" --cmd-duration="$STARSHIP_DURATION" --jobs="$STARSHIP_JOBS_COUNT")'
+    STARSHIP="$(which starship)"
+    PROMPT='$("${STARSHIP}" prompt --keymap="$KEYMAP" --status="$STARSHIP_CMD_STATUS" --cmd-duration="$STARSHIP_DURATION" --jobs="$STARSHIP_JOBS_COUNT")'
     RPROMPT=''
 
     # Save the status, because commands in this pipeline will change $?
