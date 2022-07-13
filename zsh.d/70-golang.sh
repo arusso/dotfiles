@@ -4,7 +4,7 @@ GOPATH="$HOME/go"
 GO=$(which go 2>/dev/null)
 if [[ ! -z "$GO" ]]; then
   if [[ -d "$HOME/.goenv" ]]; then
-    :prependpath "$HOME/.goenv/bin"
+    :appendpath "$HOME/.goenv/bin"
     GOENV_ROOT="$HOME/.goenv"
     [[ $(:inpath "$HOME/.goenv/shims") -eq 1 ]] && eval "$(goenv init -)"
 
@@ -24,7 +24,7 @@ if [[ ! -z "$GO" ]]; then
       esac
     }
   elif [[ -d "$GOPATH" ]] && [[ -x "$GO" ]]; then
-    :prependpath "$(go env GOPATH)/bin"
+    :appendpath "$(go env GOPATH)/bin"
   fi
 fi
 
