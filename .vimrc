@@ -157,3 +157,6 @@ set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\
+
+" control backspace / delete key behavior
+set backspace=indent,start,eol
