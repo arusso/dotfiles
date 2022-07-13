@@ -16,12 +16,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " general vim enhancements
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'godlygeek/tabular'
 Plugin 'arusso/vim-colorschemes'
 Plugin 'majutsushi/tagbar'
+Plugin 'dense-analysis/ale'
 
 " hashi stuffz
 Plugin 'hashivim/vim-terraform'
