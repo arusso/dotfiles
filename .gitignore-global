@@ -20,6 +20,8 @@ nogit/
 .ruby-version
 .rbenv-gemsets
 .go-version
+go.work
+go.work.sum
 
 # terraform
 .terraform/
@@ -28,3 +30,4 @@ terraform.tfstate
 terraform.tfstate.backup
 secret.tf
 creds.tf
+crash.*.log
