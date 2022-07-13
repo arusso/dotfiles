@@ -128,9 +128,6 @@ set incsearch
 
 autocmd BufNewFile,BufRead *.go  set syntax=go
 
-" ignore warnings for older VIM versions /w vim-go
-let g:go_version_warning = 0
-
 " statusline configuration cribbed from https://github.com/shapeshed/dotfiles/blob/master/vimrc
 set laststatus=2
 
