@@ -3,6 +3,7 @@ if [[ -z "$PYENV_ROOT" ]] && [[ -d $HOME/.pyenv ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
 fi
 :prependpath "$PYENV_ROOT/bin"
+:prependpath "$PYENV_ROOT/shims"
 
 if [[ $(:binexists pyenv) -eq 0 ]]; then
   if [[ $(:inpath "$HOME/.pyenv/shims") -eq 1 ]]; then
