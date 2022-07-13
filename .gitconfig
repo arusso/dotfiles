@@ -65,3 +65,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[checkout]
+  # when checking out a branch, default to tracking 'origin' by default
+  # if no remote is specified.
+  defaultRemote = origin
