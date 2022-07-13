@@ -26,6 +26,7 @@ Plugin 'dense-analysis/ale'
 
 " hashi stuffz
 Plugin 'hashivim/vim-terraform'
+Plugin 'hashivim/vim-vaultproject'
 
 " plugins for external tools / languages
 Plugin 'tpope/vim-fugitive'
@@ -52,6 +53,11 @@ let g:vim_markdown_frontmatter=1
 
 " disable vim-markdown folding behavior
 let g:vim_markdown_folding_disabled = 1
+
+
+let g:terraform_fmt_on_save = 1
+
+"let g:ale_linters = {'terraform': ['tflint', 'terraform-lsp']}
 
 "" General Options
 
