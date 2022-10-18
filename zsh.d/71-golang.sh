@@ -2,7 +2,7 @@
 # Go Language Configuration
 GOPATH="$HOME/go"
 GO=$(which go 2>/dev/null)
-if [[ ! -z "$GO" ]]; then
+if [[ -z "$GO" ]]; then
   if [[ -d "$HOME/.goenv" ]]; then
     # assume at this point goenv is installed. when installe with homebrew, the
     # executable is installed under /opt/homebrew/bin/goenv, so as long as
