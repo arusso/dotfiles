@@ -18,11 +18,14 @@ Plugin 'VundleVim/Vundle.vim'
 " general vim enhancements
 "Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'godlygeek/tabular'
 Plugin 'arusso/vim-colorschemes'
 Plugin 'majutsushi/tagbar'
 Plugin 'dense-analysis/ale'
+" tabular must come before vim-markdown
+Plugin 'godlygeek/tabular'
+Plugin 'preservim/vim-markdown'
+Plugin 'preservim/nerdcommenter'
+
 
 " hashi stuffz
 Plugin 'hashivim/vim-terraform'
