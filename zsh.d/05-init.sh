@@ -2,6 +2,27 @@
 export LC_ALL="en_US.UTF-8"
 export CLICOLOR='Yes'
 
+case `uname` in
+  Darwin)
+    PLATFORM="OSX"
+    ;;
+  Linux)
+    PLATFORM="Linux"
+    ;;
+  *)
+    PLATFORM="Unknown"
+    ;;
+esac
+export PLATFORM
+
+# On macOS path_helper is run each time a new shell is created which causes
+# certain paths to be out-of-order. To avoid this, we'll wipe out our PATH
+# and regenerate it each time a new environment is created.
+if [[ "$PLATFORM" == "OSX" ]]; then
+  PATH=""
+  eval $(/usr/libexec/path_helper -s)
+fi
+
 # history config
 setopt append_history     # multiple sessions share a file
 setopt extended_history   # save timestamp and elapsed time
@@ -43,24 +64,3 @@ autoload -Uz compinit && compinit
 
 EDITOR=vim
 VISUAL=vim
-
-case `uname` in
-  Darwin)
-    PLATFORM="OSX"
-    ;;
-  Linux)
-    PLATFORM="Linux"
-    ;;
-  *)
-    PLATFORM="Unknown"
-    ;;
-esac
-export PLATFORM
-
-# On macOS path_helper is run each time a new shell is created which causes
-# certain paths to be out-of-order. To avoid this, we'll wipe out our PATH
-# and regenerate it each time a new environment is created.
-if [[ "$PLATFORM" == "OSX" ]]; then
-  PATH=""
-  eval $(/usr/libexec/path_helper -s)
-fi
