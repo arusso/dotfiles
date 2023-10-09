@@ -31,3 +31,4 @@ terraform.tfstate.backup
 secret.tf
 creds.tf
 crash.*.log
+.terraform-version
