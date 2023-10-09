@@ -31,7 +31,8 @@ Plugin 'hashivim/vim-vaultproject'
 
 " plugins for external tools / languages
 Plugin 'tpope/vim-fugitive'
-Plugin 'arusso/vim-puppet'
+Plugin 'rodjek/vim-puppet'
+Plugin 'rudexi/vim-epp'
 Plugin 'tpope/vim-bundler'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'glench/vim-jinja2-syntax'
