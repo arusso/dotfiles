@@ -1,6 +1,8 @@
 function sp() {
-  if [[ "$1" == "powerline" || "$1" == "starship" ]]; then
+  if [[ "$1" == "powerline" || "$1" == "starship" || "$1" == "minimal" || "$1" == "simple" ]]; then
     PROMPTER=$1
+  elif [[ -z "$1" ]]; then
+    echo "usage: $0 <powerline|starship|minimal|simple>"
   else
     echo "I don't know about prompt '$1'"
   fi
@@ -34,6 +36,13 @@ function prompter_precmd() {
     # Use length of jobstates array as number of jobs. Expansion fails inside
     # quotes so we set it here and then use the value later on.
     STARSHIP_JOBS_COUNT=${#jobstates}
+  elif [[ "$PROMPTER" == "minimal" ]]; then
+    # minimal prompt used for screen share / 
+    PROMPT="> "
+    RPROMPT=''
+  elif [[ "$PROMPTER" == "simple" ]]; then
+    PROMPT="%n@%m %~ > "
+    RPROMPT=''
   fi
 }
 
@@ -55,10 +64,10 @@ function install_prompter_precmd() {
 # If starship precmd/preexec functions are already hooked, don't double-hook them
 # to avoid unnecessary performance degradation in nested shells
 if [[ -z ${precmd_functions[(re)prompter_precmd]} ]]; then
-    precmd_functions+=(prompter_precmd)
+  precmd_functions+=(prompter_precmd)
 fi
 if [[ -z ${preexec_function[(re)prompter_preexec]} ]]; then
-    preexec_functions+=(prompter_preexec)
+  preexec_functions+=(prompter_preexec)
 fi
 
 if [ "$TERM" != "linux" ]; then
@@ -72,7 +81,6 @@ powerline_path_aliases=(\~/src=@SRC)
 powerline_path_aliases+=(\~/src/ansible=@ANSIBLE)
 powerline_path_aliases=(-path-aliases $(:joinarr , $powerline_path_aliases))
 powerline_args=(-shell zsh -numeric-exit-codes -colorize-hostname)
-
 
 ## Starship
 # ZSH has a quirk where `preexec` is only run if a command is actually run (i.e
@@ -88,35 +96,35 @@ zmodload zsh/parameter  # Needed to access jobstates variable for STARSHIP_JOBS_
 
 # Defines a function `__starship_get_time` that sets the time since epoch in millis in STARSHIP_CAPTURED_TIME.
 if [[ $ZSH_VERSION == ([1-4]*) ]]; then
-    # ZSH <= 5; Does not have a built-in variable so we will rely on Starship's inbuilt time function.
-    __starship_get_time() {
-        STARSHIP_CAPTURED_TIME=$("/usr/local/bin/starship" time)
-    }
+  # ZSH <= 5; Does not have a built-in variable so we will rely on Starship's inbuilt time function.
+  __starship_get_time() {
+    STARSHIP_CAPTURED_TIME=$("/usr/local/bin/starship" time)
+  }
 else
-    zmodload zsh/datetime
-    zmodload zsh/mathfunc
-    __starship_get_time() {
-        (( STARSHIP_CAPTURED_TIME = int(rint(EPOCHREALTIME * 1000)) ))
-    }
+  zmodload zsh/datetime
+  zmodload zsh/mathfunc
+  __starship_get_time() {
+    (( STARSHIP_CAPTURED_TIME = int(rint(EPOCHREALTIME * 1000)) ))
+  }
 fi
 
 # Set up a function to redraw the prompt if the user switches vi modes
 starship_zle-keymap-select() {
-    zle reset-prompt
+  zle reset-prompt
 }
 
 ## Check for existing keymap-select widget.
 # zle-keymap-select is a special widget so it'll be "user:fnName" or nothing. Let's get fnName only.
 __starship_preserved_zle_keymap_select=${widgets[zle-keymap-select]#user:}
 if [[ -z $__starship_preserved_zle_keymap_select ]]; then
-    zle -N zle-keymap-select starship_zle-keymap-select;
+  zle -N zle-keymap-select starship_zle-keymap-select;
 else
-    # Define a wrapper fn to call the original widget fn and then Starship's.
-    starship_zle-keymap-select-wrapped() {
-        $__starship_preserved_zle_keymap_select "$@";
-        starship_zle-keymap-select "$@";
-    }
-    zle -N zle-keymap-select starship_zle-keymap-select-wrapped;
+  # Define a wrapper fn to call the original widget fn and then Starship's.
+  starship_zle-keymap-select-wrapped() {
+    $__starship_preserved_zle_keymap_select "$@";
+    starship_zle-keymap-select "$@";
+  }
+  zle -N zle-keymap-select starship_zle-keymap-select-wrapped;
 fi
 
 __starship_get_time && STARSHIP_START_TIME=$STARSHIP_CAPTURED_TIME
