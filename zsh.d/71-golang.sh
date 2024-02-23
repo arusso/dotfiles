@@ -4,8 +4,13 @@ GOPATH="$HOME/go"
 GO=$(which go 2>/dev/null)
 if [[ ! -z "$GO" ]]; then
   if [[ -d "$HOME/.goenv" ]]; then
-    :appendpath "$HOME/.goenv/bin"
+    # assume at this point goenv is installed. when installe with homebrew, the
+    # executable is installed under /opt/homebrew/bin/goenv, so as long as
+    # homebrew bin is in our path we don't need to add the goenv bindir (which
+    # wont even exist).
+    [[ -d "$HOME/.goenv/bin" ]] && :appendpath "$HOME/.goenv/bin"
     GOENV_ROOT="$HOME/.goenv"
+
     [[ $(:inpath "$HOME/.goenv/shims") -eq 1 ]] && eval "$(goenv init -)"
 
     # enable shell integration
