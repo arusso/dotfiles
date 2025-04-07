@@ -24,9 +24,11 @@
 
 ## enable or disable automatic sync
 # auto_sync = true
+auto_sync = false
 
 ## enable or disable automatic update checks
 # update_check = true
+update_check = false
 
 ## address of the sync server
 # sync_address = "https://api.atuin.sh"
@@ -106,7 +108,8 @@ ctrl_n_shortcuts = true
 # ]
 history_filter = [
   "^vault[ \t]+kv[ \t]+put .*",
-  "^vault[ \t]+write .*"
+  "^vault[ \t]+write .*",
+  "LDAP_PASSWORD=.*"
 ]
 
 ## prevent commands run with cwd matching any of these regexes from being written
@@ -185,3 +188,10 @@ common_subcommand = [
 #
 # Set commands that should be totally stripped and ignored from stats
 #common_prefix = ["sudo"]
+
+[them]
+name = "autumn"
+
+[colors]
+AlertInto = "green"
+Guidance = "#888844"
