@@ -1,6 +1,8 @@
 if [[ -d "$HOME/.tenv" ]]; then
   :prependpath "$HOME/.tenv/bin"
   TENV_ROOT="$HOME/.tenv"
+
+  [[ -f "completion/tenv" ]] && source completion/tenv
 else
   if [[ -d "$HOME/.tofuenv" ]]; then
     # we want this to outrank any system install versions
