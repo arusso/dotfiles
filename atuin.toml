@@ -109,7 +109,10 @@ ctrl_n_shortcuts = true
 history_filter = [
   "^vault[ \t]+kv[ \t]+put .*",
   "^vault[ \t]+write .*",
-  "LDAP_PASSWORD=.*"
+  "LDAP_PASSWORD=.*",
+  "ACCESS_TOKEN=[\"']?[^$].*",
+  "SECRET_ACCESS_KEY=[\"']?[^$].*",
+  "VAULT_TOKEN=[\"']?[^$].*",
 ]
 
 ## prevent commands run with cwd matching any of these regexes from being written
