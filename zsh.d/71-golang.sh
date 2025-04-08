@@ -1,8 +1,6 @@
-#
-# Go Language Configuration
-GOPATH="$HOME/go"
-GO=$(which go 2>/dev/null)
-if [[ -z "$GO" ]]; then
+if [[ ${GOENV_ENABLE:-1} -eq 1 ]]; then
+  GOPATH="$HOME/go"
+  GO=$(which go 2>/dev/null)
   if [[ -d "$HOME/.goenv" ]]; then
     # assume at this point goenv is installed. when installe with homebrew, the
     # executable is installed under /opt/homebrew/bin/goenv, so as long as
@@ -28,14 +26,5 @@ if [[ -z "$GO" ]]; then
         command goenv "$command" "$@";;
       esac
     }
-  elif [[ -d "$GOPATH" ]] && [[ -x "$GO" ]]; then
-    :appendpath "$(go env GOPATH)/bin"
   fi
 fi
-
-alias gg="go get -d"
-
-func getgolint() {
-  local version="${1:-latest}"
-  go install golang.org/x/lint/golint@$version
-}
