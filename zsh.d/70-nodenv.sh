@@ -2,7 +2,8 @@
 if [[ -z "$NODENV_ROOT" ]] && [[ -d $HOME/.nodenv ]]; then
   export NODENV_ROOT="$HOME/.nodenv"
 fi
-:prependpath "$NODENV_ROOT/bin"
+:appendpath "$NODENV_ROOT/bin"
+:appendpath "$NODENV_ROOT/shims"
 
 export NODENV_SHELL=zsh
 source "$NODENV_ROOT/libexec/../completions/nodenv.zsh"
