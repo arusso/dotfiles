@@ -113,6 +113,7 @@ history_filter = [
   "ACCESS_TOKEN=[\"']?[^$].*",
   "SECRET_ACCESS_KEY=[\"']?[^$].*",
   "VAULT_TOKEN=[\"']?[^$].*",
+  "kubeconfig-u-",
 ]
 
 ## prevent commands run with cwd matching any of these regexes from being written
