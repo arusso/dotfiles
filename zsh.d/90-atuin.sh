@@ -1,5 +1,9 @@
 # atuin setup
-#
+
+if [[ -d "$HOME/.atuin/bin" ]]; then
+  :appendpath "$HOME/.atuin/bin"
+fi
+
 # This needs to happen after we're done mucking with our path since that's how
 # we'd find it if installed via rustup or homebrew.
 
