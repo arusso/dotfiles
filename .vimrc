@@ -4,9 +4,6 @@
 set nocompatible
 filetype off
 
-" used to detect our platform
-let s:uname = system("echo -n \"$(uname)\"")
-
 " setup vundle
 "
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -42,7 +39,7 @@ Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 
 " platform specific plugins
-if s:uname == "Darwin"
+if has('mac')
   Plugin 'rizzatti/dash.vim'
 endif
 
@@ -83,7 +80,6 @@ set wildignore=*.o,*~,*.pyc
 
 "" Interface
 let g:solarized_termcolors = 256
-"colorscheme desert
 colorscheme solarized
 set background=dark
 
@@ -135,13 +131,12 @@ autocmd BufNewFile,BufRead *.go  set syntax=go
 " statusline configuration cribbed from https://github.com/shapeshed/dotfiles/blob/master/vimrc
 set laststatus=2
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
 function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+  if exists('*FugitiveHead')
+    let l:h = FugitiveHead()
+    return empty(l:h) ? '' : '  ' . l:h . ' '
+  endif
+  return ''
 endfunction
 
 set statusline=
