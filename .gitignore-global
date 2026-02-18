@@ -33,5 +33,9 @@ creds.tf
 crash.*.log
 .terraform-version
 
+# Coding Agents
+.claude/settings.local.json
+
 # superpowers plugin for claude/codex/...
 docs/superpowers/specs/
+
