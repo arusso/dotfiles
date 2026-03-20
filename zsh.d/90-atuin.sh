@@ -7,7 +7,7 @@ fi
 # This needs to happen after we're done mucking with our path since that's how
 # we'd find it if installed via rustup or homebrew.
 
-if [[ ${ATUIN_ENABLE:-1} -eq 1 && ! -z "$(which atuin)" ]]; then
+if [[ ${ATUIN_ENABLE:-1} -eq 1 ]] && whence atuin >/dev/null; then
   # shellcheck disable=SC2034,SC2153,SC2086,SC2155
 
   # Above line is because shellcheck doesn't support zsh, per
