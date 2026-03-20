@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 vim.g.mapleader = '-'
+vim.g.maplocalleader = "\\"
 
 -- turn on line numbers by default
 opt.number = true
