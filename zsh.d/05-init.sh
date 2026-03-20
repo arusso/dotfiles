@@ -34,8 +34,13 @@ setopt hist_no_store      # do not store calls to the history cmd
 setopt histignorespace    # ignore entries with with leading whitspace
 
 
-[[ ! -d "$HOME/.zsh_history" ]] && mkdir "$HOME"/.zsh_history
-HISTFILE="$HOME/.zsh_history/$HOSTNAME-$(date +%Y%m%d)"
+if [[ -f "$HOME/.zsh_history" ]]; then
+  echo "Detected ~/.zsh_history as file. Converting to directory"
+  mv "$HOME/.zsh_history" "$HOME/.zsh_history.migrated.$(date +%Y%m%d%H%M%S)"
+fi
+
+[[ ! -d "$HOME/.zsh_history" ]] && mkdir "$HOME"/.zsh_history >/dev/null
+HISTFILE="$HOME/.zsh_history/$(hostname -s)-$(date +%Y%m%d)"
 HISTSIZE=500
 SAVEHIST=200000
 
