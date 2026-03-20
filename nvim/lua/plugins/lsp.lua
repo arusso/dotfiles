@@ -1,22 +1,25 @@
 -- lua/plugins/lsp.lua
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     'neovim/nvim-lspconfig',
     config = function()
       vim.lsp.config('lua_ls', {
         settings = {
           Lua = {
             format = { enable = true },
-            runtime = {
-              version = 'LuaJIT', -- Neovim uses LuaJIT
-            },
-            workspace = {
-              checkThirdParty = false,
-              library = vim.api.nvim_get_runtime_file("", true), -- makes lua_ls aware of all Neovim runtime files
-            },
-            diagnostics = {
-              globals = { 'vim' }, -- tell lua_ls vim is a valid global
-            },
+            runtime = { version = 'LuaJIT' },
+            diagnostics = { globals = { 'vim' } },
           },
         },
       })
