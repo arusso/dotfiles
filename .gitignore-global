@@ -32,3 +32,6 @@ secret.tf
 creds.tf
 crash.*.log
 .terraform-version
+
+# superpowers plugin for claude/codex/...
+docs/superpowers/specs/
