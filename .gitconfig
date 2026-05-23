@@ -1,5 +1,6 @@
 [user]
   name = Aaron Russo
+  useConfigOnly = true
 
 [alias]
   bl = blame
