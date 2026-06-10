@@ -39,7 +39,7 @@ return {
         },
       })
     end,
-  }
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.8", -- Compatible with Neovim 0.7+
