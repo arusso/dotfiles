@@ -1,0 +1,6 @@
+font-family = "JetBrainsMono NFM Regular"
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+shell-integration-features = ssh-terminfo
+
+custom-shader = "./shaders/cineShader-Lava.glsl"
