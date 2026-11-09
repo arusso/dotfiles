@@ -37,3 +37,11 @@ style = "bold 214" #orange
 [[battery.display]]
 threshold = 40
 style = "bold yellow"
+
+[custom.tracked_ignored]
+description = "Tracked files that match .gitignore"
+when = 'git ls-files -ci --exclude-standard 2>/dev/null | grep -q .'
+command = 'git ls-files -ci --exclude-standard | wc -l'
+format = "[⚠ $output]($style) "
+style = "yellow"
+shell = ["sh"]
