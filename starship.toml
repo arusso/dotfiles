@@ -9,6 +9,18 @@ error_symbol = "[>](bold red) "
 [package]
 disabled = false
 
+# Disable python and ruby, since they're really slow on
+# my new el9 bastion for some reason
+[python]
+# make sure ~/.python-version points to ~/.pyenv/version, otherwise
+# this is _very_ slow.
+disabled = false
+
+[ruby]
+# make sure ~/.ruby-version points to ~/.rbenv/version, otherwise
+# this is _very_ slow.
+disabled = false
+
 [battery]
 full_symbol = "🔋 "
 charging_symbol = "⚡️ "
