@@ -58,6 +58,7 @@
   renamelimit = 0
 [commit]
   template = ~/.git-commit-template
+  verbose = true
 [init]
   defaultBranch = main
 [pull]
