@@ -156,3 +156,8 @@ set statusline+=\
 
 " control backspace / delete key behavior
 set backspace=indent,start,eol
+
+" Map our Function keys to useful things
+
+" F1 toggles line numbers
+nnoremap <F1> :set number!<CR>
