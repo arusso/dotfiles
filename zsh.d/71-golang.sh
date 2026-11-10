@@ -1,4 +1,4 @@
-if [[ ! -z "$(which asdf)" ]] && [[ ! -z "$(asdf plugin list | grep golang)" ]]; then
+if [[ ! -z "$(which asdf 2>/dev/null)" ]] && [[ ! -z "$(asdf plugin list | grep golang)" ]]; then
   source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 elif [[ ${GOENV_ENABLE:-1} -eq 1 ]]; then
   GOPATH="$HOME/go"

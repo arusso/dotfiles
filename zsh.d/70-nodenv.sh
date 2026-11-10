@@ -1,5 +1,5 @@
 
-if [[ "$(which asdf)" ]] && [[ ! -z "$(asdf plugin list | grep nodejs)" ]]; then
+if [[ ! -z "$(which asdf 2>/dev/null)" ]] && [[ ! -z "$(asdf plugin list | grep nodejs)" ]]; then
   : # do nothing?
 else
   # initialize nodenv

@@ -1,6 +1,6 @@
 export ASDF_DATA_DIR="$HOME/.asdf"
 
-if [[ ! -z "$(which asdf)" ]]; then
+if [[ ! -z "$(which asdf 2>/dev/null)" ]]; then
   export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
   if [[ ! -d "$ASDF_DATA_DIR/completions" ]]; then
