@@ -19,7 +19,7 @@ float sdSphere( vec3 p, float s )
 float map(vec3 p)
 {
 	float d = 2.0;
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < 8; i++) {
 		float fi = float(i);
 		float time = iTime * (fract(fi * 412.531 + 0.513) - 0.5) * 2.0;
 		d = opSmoothUnion(
@@ -50,18 +50,26 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	float depth = 0.0;
 	vec3 p;
-	
-	for(int i = 0; i < 64; i++) {
+	bool hit = false;
+
+	for(int i = 0; i < 40; i++) {
 		p = rayOri + rayDir * depth;
 		float dist = map(p);
         depth += dist;
-		if (dist < 1e-6) {
+		if (dist < 1e-3) {
+			hit = true;
+			break;
+		}
+		if (depth > 6.0) {
+			depth = 6.0;
 			break;
 		}
 	}
-	
+
     depth = min(6.0, depth);
-	vec3 n = calcNormal(p);
+    // Misses are heavily dimmed by exp(-depth*0.15) below anyway, so skip
+    // calcNormal's 4 extra map() evaluations and use a fixed camera-facing normal.
+	vec3 n = hit ? calcNormal(p) : vec3(0.0, 0.0, 1.0);
     float b = max(0.0, dot(n, vec3(0.577)));
     vec3 col = (0.5 + 0.5 * cos((b + iTime*COLOR_SPEED * 3.0) + uv.xyx * 2.0 + vec3(0,2,4))) * (0.85 + b * 0.35);
     col *= exp( -depth * 0.15 );
