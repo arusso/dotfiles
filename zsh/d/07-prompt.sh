@@ -8,6 +8,12 @@ function sp() {
   fi
 }
 
+# Default prompt: starship when installed, else simple. Override with `sp` or by
+# setting PROMPTER in ~/.config/dotfiles/config.
+if [[ -z "$PROMPTER" ]]; then
+  (( $+commands[starship] )) && PROMPTER=starship || PROMPTER=simple
+fi
+
 (( ! ${+precmd_functions} )) && precmd_functions=()
 (( ! ${+preexec_functions} )) && preexec_functions=()
 
