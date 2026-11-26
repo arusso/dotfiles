@@ -1,5 +1,5 @@
 # Keep support for pyenv while we transition to uv entirely
-if [[ ${PYENV_ENABLE:-0} -eq 1 ]]; then
+if [[ ${PYENV_ENABLE:-0} -eq 1 && $DOTFILES_MISE -eq 0 ]]; then
   # initialize pyenv
   if [[ -z "$PYENV_ROOT" ]] && [[ -d $HOME/.pyenv ]]; then
     export PYENV_ROOT="$HOME/.pyenv"

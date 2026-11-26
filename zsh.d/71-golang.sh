@@ -1,4 +1,4 @@
-if [[ ${GOENV_ENABLE:-1} -eq 1 ]]; then
+if [[ ${GOENV_ENABLE:-1} -eq 1 && $DOTFILES_MISE -eq 0 ]]; then
   GOPATH="$HOME/go"
   GO=$(which go 2>/dev/null)
   if [[ -d "$HOME/.goenv" ]]; then

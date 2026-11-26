@@ -1,4 +1,6 @@
-if [[ -d "$HOME/.tenv" ]]; then
+if [[ $DOTFILES_MISE -eq 1 ]]; then
+  : # terraform/tofu come from mise
+elif [[ -d "$HOME/.tenv" ]]; then
   :prependpath "$HOME/.tenv/bin"
   TENV_ROOT="$HOME/.tenv"
 
