@@ -1,4 +1,4 @@
-if [[ $DOTFILES_MISE -eq 1 ]]; then
+if [[ $RUNTIMES_VIA_MISE -eq 1 ]]; then
   : # terraform/tofu come from mise
 elif [[ -d "$HOME/.tenv" ]]; then
   :prependpath "$HOME/.tenv/bin"

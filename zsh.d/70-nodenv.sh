@@ -1,5 +1,5 @@
 # nodenv is only a fallback for hosts without mise (see 70-mise.sh)
-if [[ $DOTFILES_MISE -eq 0 ]]; then
+if [[ $RUNTIMES_VIA_MISE -eq 0 ]]; then
   # initialize nodenv
   if [[ -z "$NODENV_ROOT" ]] && [[ -d $HOME/.nodenv ]]; then
     export NODENV_ROOT="$HOME/.nodenv"

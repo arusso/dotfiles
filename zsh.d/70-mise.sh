@@ -4,9 +4,9 @@
 # RUNTIMES_VIA_MISE=1.
 #
 # Settings (in ~/.config/dotfiles/config or config.$HOSTNAME):
-#   USE_MISE: (Default: 1) set to 0 to ignore mise entirely
-#   USE_MISE_SHIMS:  (Default: 0) use shims instead of `mise activate`
-#                         (handy for editors/cron that don't run a prompt)
+#   USE_MISE:       (Default: 1) set to 0 to ignore mise entirely
+#   USE_MISE_SHIMS: (Default: 0) use shims instead of `mise activate`
+#                   (handy for editors/cron that don't run a prompt)
 RUNTIMES_VIA_MISE=0
 
 if [[ ${USE_MISE:-1} -eq 1 ]] && (( $+commands[mise] )); then

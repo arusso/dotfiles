@@ -1,4 +1,4 @@
-if [[ ${RBENV_ENABLE:-0} -eq 1 && $DOTFILES_MISE -eq 0 ]]; then
+if [[ ${RBENV_ENABLE:-0} -eq 1 && $RUNTIMES_VIA_MISE -eq 0 ]]; then
   export RBENV_ROOT="${RBENV_ROOT:-$HOME/.rbenv}"
   export RBENV_SHELL=zsh
   source "$RBENV_ROOT/completions/rbenv.zsh"
