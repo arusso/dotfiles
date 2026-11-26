@@ -16,7 +16,6 @@
 "~/.gitconfig"          = { source = "git/gitconfig" }
 "~/.gitignore"          = { source = "git/gitignore" }
 "~/.git-commit-template" = { source = "git/commit-template" }
-"~/.mailmap"            = { source = "git/mailmap" }
 "~/bin"                 = { source = "git/bin", mode = "symlink-each" }
 
 # editors / terminal

@@ -15,7 +15,8 @@ mise.<env>.toml  optional per-role overlays, used with `mise -E <env>` (macos, w
 mise/            global mise config: mise.toml (all hosts), macos.toml (brew packages)
 zsh/             zshrc, d/ (numbered init snippets), func/, completion/
 bash/            bashrc, bash_profile, profile, d/ (older, minimal)
-git/             gitconfig, gitignore, commit-template, mailmap, bin/ (git-*)
+git/             gitconfig, gitignore, commit-template, bin/ (git-*)
+.mailmap         author mapping for this repo only (git reads it from the repo root)
 vim/  nvim/      vimrc + ftplugin; Neovim (lazy.nvim, see nvim/README.md)
 tmux/  ghostty/  terminal config
 starship/ atuin/ prompt and shell history
