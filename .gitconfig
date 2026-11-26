@@ -15,6 +15,8 @@
   df = diff -b
   dfc = diff --cached
   dfm = diff master..
+  fb = "!f() { git checkout -b \"feature/$1\"; }; f"
+  fu = commit -m 'fixup'
   hist = log --pretty=format:\"%h %ad> %s%d [%an]\" --graph --date=short
   gr = log --pretty=format:'%h : %s (%Cred%ae%Creset)' --graph
   l = log --pretty=format:'[%Cred%h%Creset] %C(yellow)%s%C(reset) (%Cblueby %C(magenta)%ae %Cblue%ar%Creset)'
