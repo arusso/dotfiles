@@ -23,6 +23,11 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 
+-- fold by treesitter syntax tree; start with everything open
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldlevelstart = 99
+
 -- highlight search results
 opt.hlsearch = true
 
