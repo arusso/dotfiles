@@ -42,6 +42,6 @@ style = "bold yellow"
 description = "Tracked files that match .gitignore"
 when = 'git ls-files -ci --exclude-standard 2>/dev/null | grep -q .'
 command = 'git ls-files -ci --exclude-standard | wc -l'
-format = "[⚠ $output]($style) "
+format = "[⚠ $output tracked but gitignored]($style) "
 style = "yellow"
 shell = ["sh"]
