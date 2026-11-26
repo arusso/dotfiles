@@ -10,6 +10,7 @@ go = "1.27"
 "go:honnef.co/go/tools/cmd/staticcheck" = "latest"
 kubectl = "1.32"
 python = ["3.14", "3.15"]
+ruby = "4"
 rust = "stable"
 uv = "latest"
 
