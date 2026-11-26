@@ -8,6 +8,11 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
+-- disable remote-plugin providers we don't use (silences :checkhealth provider)
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- turn on line numbers by default
 opt.number = true
 
