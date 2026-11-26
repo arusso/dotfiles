@@ -8,6 +8,12 @@ return {
         -- format-on-save.nvim (plugins/formatting.lua) already formats on save;
         -- leaving this on would format twice.
         auto_format = false,
+        registry = {
+          -- vscode-langservers-extracted bundles html/css/json/eslint servers;
+          -- only enable jsonls.
+          ["npm:vscode-langservers-extracted"] = { lsp = "jsonls" },
+          ["taplo"] = { lsp = "taplo" },
+        },
       })
     end,
   },

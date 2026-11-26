@@ -1,4 +1,6 @@
 -- lua/plugins/lsp.lua
+-- Servers themselves are wired by miser.nvim (plugins/miser.lua) from the tools
+-- in mise.toml; only helpers that aren't servers live here.
 return {
   {
     "folke/lazydev.nvim",
@@ -10,20 +12,5 @@ return {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
-  },
-  {
-    'neovim/nvim-lspconfig',
-    config = function()
-      vim.lsp.config('lua_ls', {
-        settings = {
-          Lua = {
-            format = { enable = true },
-            runtime = { version = 'LuaJIT' },
-            diagnostics = { globals = { 'vim' } },
-          },
-        },
-      })
-      vim.lsp.enable('lua_ls')
-    end,
   },
 }
