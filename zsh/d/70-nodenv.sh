@@ -1,4 +1,4 @@
-# nodenv is only a fallback for hosts without mise (see 70-mise.sh)
+# nodenv is only a fallback for hosts without mise (see 06-mise.sh)
 if [[ $RUNTIMES_VIA_MISE -eq 0 ]]; then
   # initialize nodenv
   if [[ -z "$NODENV_ROOT" ]] && [[ -d $HOME/.nodenv ]]; then

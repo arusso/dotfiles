@@ -76,9 +76,10 @@ Set these in `~/.config/dotfiles/config` (or `config.$HOSTNAME`):
 
 `~/.zshrc` -> `zsh/zshrc` finds the repo root by resolving its own symlink
 (`DOTFILES_DIR`), then sources `zsh/d/*.sh` in filename order. The numeric
-prefix is the load order: `02` config, `05` init/PATH, `07` prompt, `2x`
-git/fzf, `50` ssh, `70`+ tools (`70-mise` activates mise), `90` atuin,
-`99` post-init (`~/.zshrc.post-init`, then `compinit`). `bash/bashrc` does the
+prefix is the load order: `02` config, `05` init/PATH, `06` Homebrew PATH
+then mise (so tools it installs are visible to everything after), `07` prompt,
+`11` aliases, `2x` git/fzf, `50` ssh, `70`+ legacy runtime fallbacks, `90`
+atuin, `99` post-init (`~/.zshrc.post-init`, then `compinit`). `bash/bashrc` does the
 same for `bash/d`.
 
 ## Notes
