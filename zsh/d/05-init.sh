@@ -63,7 +63,7 @@ elif [[ $hidx -gt ${#path} ]]; then
   path=($HOME/bin $path)
 fi
 
-[[ ${fpath[(ie)$DOTFILES_DIR]} -le ${#fpath} ]] || fpath=($DOTFILES_DIR/zsh.d/func $fpath)
+[[ ${fpath[(ie)$DOTFILES_DIR]} -le ${#fpath} ]] || fpath=($DOTFILES_DIR/zsh/func $fpath)
 [[ ${fpath[(ie)"$HOME/.config/zsh/func"]} -le ${#fpath} ]] || fpath=("$HOME/.config/zsh/func" $fpath)
 autoload -Uz compinit && compinit
 

@@ -2,7 +2,6 @@ local/
 theme_index
 *.swp
 *~
-bash.d/*.local.sh
+bash/d/*.local.sh
 .DS_Store
-install.yml
 .vim/bundle

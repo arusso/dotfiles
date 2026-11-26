@@ -1,0 +1,9 @@
+# load our zsh configs
+# ~/.zshrc is a symlink to <repo>/zsh/zshrc (see mise.toml). Resolve it to find
+# the repo root, no matter where the repo is checked out. (:A resolves symlinks
+# and works the same on macOS and Linux.)
+DOTFILES_DIR=${${(%):-%x}:A:h:h}
+
+for file in "$DOTFILES_DIR"/zsh/d/*.sh; do
+  . "$file"
+done

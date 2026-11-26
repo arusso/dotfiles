@@ -1,0 +1,6 @@
+# Example overlay: loaded only when the `work` environment is selected, e.g.
+#   mise -E work dot apply          (or MISE_ENV=work)
+# Rename/copy to mise.<anything>.toml for other roles. Uncomment to use.
+#
+# [dotfiles]
+# "~/.config/dotfiles/config.example" = { content = "PROMPT_SIMPLE=1\n" }

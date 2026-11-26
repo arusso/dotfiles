@@ -1,0 +1,36 @@
+# Dotfiles map for `mise dot`. Each key is where the file lands, each source is
+# a path in this repo. Preview with `mise dot apply --dry-run`.
+#
+# Per-role/host differences: put extras in mise.<env>.toml and select them with
+# `mise -E <env> dot apply` (or MISE_ENV=<env>). Shell-level, per-host
+# settings live in ~/.config/dotfiles/config.$HOSTNAME instead.
+[dotfiles]
+# zsh / bash
+"~/.zshrc"        = { source = "zsh/zshrc" }
+"~/.bashrc"       = { source = "bash/bashrc" }
+"~/.bash_profile" = { source = "bash/bash_profile" }
+"~/.profile"      = { source = "bash/profile" }
+"~/.inputrc"      = { source = "misc/inputrc" }
+
+# git (+ the git-* helper scripts, linked one by one into ~/bin)
+"~/.gitconfig"          = { source = "git/gitconfig" }
+"~/.gitignore"          = { source = "git/gitignore" }
+"~/.git-commit-template" = { source = "git/commit-template" }
+"~/.mailmap"            = { source = "git/mailmap" }
+"~/bin"                 = { source = "git/bin", mode = "symlink-each" }
+
+# editors / terminal
+"~/.vimrc"          = { source = "vim/vimrc" }
+"~/.vim/ftplugin"   = { source = "vim/ftplugin" }
+"~/.config/nvim"    = { source = "nvim" }
+"~/.tmux.conf"      = { source = "tmux/tmux.conf" }
+"~/.config/ghostty" = { source = "ghostty" }
+
+# prompt / history
+"~/.config/starship.toml"     = { source = "starship/starship.toml" }
+"~/.config/atuin/config.toml" = { source = "atuin/config.toml" }
+
+# misc
+"~/.gnupg/gpg.conf" = { source = "gnupg/gpg.conf" }
+"~/.curlrc"         = { source = "misc/curlrc" }
+"~/.gemrc"          = { source = "misc/gemrc" }
