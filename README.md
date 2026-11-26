@@ -11,7 +11,8 @@ Personal and work shell/editor configuration for macOS and Enterprise Linux
 
 ```
 mise.toml        what gets linked where (the source of truth for deployment)
-mise.<env>.toml  optional per-role overlays, used with `mise -E <env>`
+mise.<env>.toml  optional per-role overlays, used with `mise -E <env>` (macos, work)
+mise/            global mise config: mise.toml (all hosts), macos.toml (brew packages)
 zsh/             zshrc, d/ (numbered init snippets), func/, completion/
 bash/            bashrc, bash_profile, profile, d/ (older, minimal)
 git/             gitconfig, gitignore, commit-template, mailmap, bin/ (git-*)
@@ -28,7 +29,10 @@ git clone <repo> ~/cfg && cd ~/cfg
 # install mise: `brew install mise` (macOS) or `curl https://mise.run | sh` (Linux)
 mise trust
 mise dot apply --dry-run     # review
+mkdir -m 700 -p ~/.gnupg     # so gpg doesn't complain about permissions
 mise dot apply               # add --force if default files (~/.bashrc, ...) exist
+# macOS only: also link the Homebrew package list
+mise -E macos dot apply
 ```
 
 `apply` refuses to overwrite existing files unless you pass `--force`, so on a

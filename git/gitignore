@@ -39,3 +39,6 @@ crash.*.log
 # superpowers plugin for claude/codex/...
 docs/superpowers/specs/
 
+
+# claude code
+**/.claude/settings.local.json

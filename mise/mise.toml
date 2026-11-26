@@ -1,0 +1,8 @@
+# Global mise config, shared by every host (deployed to ~/.config/mise/mise.toml).
+# macOS-only Homebrew packages live in macos.toml.
+[settings]
+idiomatic_version_file_enable_tools = ["go", "python"]
+
+[tools]
+go = "1.27"
+"go:honnef.co/go/tools/cmd/staticcheck" = "latest"

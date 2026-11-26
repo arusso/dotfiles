@@ -30,6 +30,9 @@
 "~/.config/starship.toml"     = { source = "starship/starship.toml" }
 "~/.config/atuin/config.toml" = { source = "atuin/config.toml" }
 
+# mise itself (shared tools). macOS-only packages are in mise.macos.toml
+"~/.config/mise/mise.toml" = { source = "mise/mise.toml" }
+
 # misc
 "~/.gnupg/gpg.conf" = { source = "gnupg/gpg.conf" }
 "~/.curlrc"         = { source = "misc/curlrc" }

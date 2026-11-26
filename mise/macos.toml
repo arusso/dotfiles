@@ -1,0 +1,33 @@
+# macOS-only: Homebrew packages/taps, applied with `mise -E macos bootstrap`.
+# Deployed to ~/.config/mise/conf.d/ only by the `macos` overlay (mise.macos.toml).
+[bootstrap.brew.taps]
+"securitypedant/octomon" = "https://github.com/securitypedant/homebrew-octomon.git"
+
+[bootstrap.packages]
+"brew:ansible-language-server" = "latest"
+"brew:atuin" = "latest"
+"brew:bottom" = "latest"
+"brew:dutree" = "latest"
+"brew:e2fsprogs" = "latest"
+"brew:eza" = "latest"
+"brew:fd" = "latest"
+"brew:ffmpeg" = "latest"
+"brew:git-graph" = "latest"
+"brew:goenv" = "latest"
+"brew:just" = "latest"
+"brew:kustomize" = "latest"
+"brew:lua-language-server" = "latest"
+"brew:mactop" = "latest"
+"brew:mise" = "latest"
+"brew:mtr" = "latest"
+"brew:neovim" = "latest"
+"brew:securitypedant/octomon/octomon" = "latest"
+"brew:podman" = "latest"
+"brew:podman-tui" = "latest"
+"brew:python@3.14" = "latest"
+"brew:ripgrep" = "latest"
+"brew:starship" = "latest"
+"brew:tmux" = "latest"
+"brew:tree" = "latest"
+"brew:tree-sitter-cli" = "latest"
+"brew:uv" = "latest"
