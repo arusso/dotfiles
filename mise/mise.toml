@@ -4,14 +4,26 @@
 idiomatic_version_file_enable_tools = ["go", "python"]
 
 [tools]
+atuin = "latest"
+bottom = "latest"
 eza = "latest"
+fd = "latest"
 fzf = "latest"
 go = "1.27"
 "go:honnef.co/go/tools/cmd/staticcheck" = "latest"
+just = "latest"
 kubectl = "1.32"
+kustomize = "latest"
+lua-language-server = "latest"
+neovim = "latest"
+podman-tui = "latest"
 python = ["3.14", "3.15"]
+ripgrep = "latest"
 ruby = "4"
 rust = "stable"
+starship = "latest"
+tmux = "latest"
+tree-sitter = "latest"
 uv = "latest"
 
 [tasks.bootstrap]
