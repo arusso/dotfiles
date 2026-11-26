@@ -4,5 +4,16 @@
 idiomatic_version_file_enable_tools = ["go", "python"]
 
 [tools]
+eza = "latest"
+fzf = "latest"
 go = "1.27"
 "go:honnef.co/go/tools/cmd/staticcheck" = "latest"
+kubectl = "1.32"
+python = ["3.14", "3.15"]
+rust = "stable"
+uv = "latest"
+
+[tasks.bootstrap]
+run = [
+  "go version",
+]
