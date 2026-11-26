@@ -1,5 +1,4 @@
 return {
-  { 'fatih/vim-go' },
   { 'glench/vim-jinja2-syntax' },
   { 'hashivim/vim-terraform' },
   { 'hashivim/vim-vaultproject' },

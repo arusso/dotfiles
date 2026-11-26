@@ -42,18 +42,11 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    version = "2.20.8", -- Compatible with Neovim 0.7+
-    config = function()
-      require("indent_blankline").setup {
-        char = "┊",
-        show_trailing_blankline_indent = false,
-        show_current_context = true,
-        show_current_context_start = true,
-        context_patterns = {
-          "class", "function", "method", "block", "list_literal", "selector",
-          "^if", "^table", "if_statement", "while", "for"
-        },
-      }
-    end
+    main = "ibl",
+    opts = {
+      indent = { char = "┊" },
+      -- highlight the current scope (uses Neovim's built-in treesitter)
+      scope = { enabled = true, show_start = true },
+    },
   },
 }
