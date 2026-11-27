@@ -54,6 +54,13 @@
 [core]
   editor = /usr/bin/vim
   excludesfile = ~/.gitignore
+  # use delta when installed, otherwise git's default less
+  pager = "if command -v delta >/dev/null 2>&1; then delta; else less; fi"
+[interactive]
+  diffFilter = "if command -v delta >/dev/null 2>&1; then delta --color-only; else cat; fi"
+[delta]
+  navigate = true
+  line-numbers = true
 [pack]
   threads = 0
 [diff]

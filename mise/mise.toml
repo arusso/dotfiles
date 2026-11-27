@@ -9,6 +9,7 @@ minimum_release_age = "3d"
 atuin = { version = "latest", os = ["linux", "macos/arm64"] }
 bottom = "latest"
 ctop = "latest"
+delta = "latest"
 dive = "latest"
 eza = "latest"
 fd = "latest"
