@@ -5,7 +5,8 @@ idiomatic_version_file_enable_tools = ["go", "python"]
 minimum_release_age = "3d"
 
 [tools]
-atuin = "latest"
+# mise can't install on macos/x64 so we limit it to where it can install
+atuin = { version = "latest", os = ["linux", "macos/arm64"] }
 bottom = "latest"
 eza = "latest"
 fd = "latest"
