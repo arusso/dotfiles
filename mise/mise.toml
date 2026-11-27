@@ -8,10 +8,12 @@ minimum_release_age = "3d"
 # mise can't install on macos/x64 so we limit it to where it can install
 atuin = { version = "latest", os = ["linux", "macos/arm64"] }
 bottom = "latest"
+dive = "latest"
 eza = "latest"
 fd = "latest"
 fzf = "latest"
 go = "1.27"
+"go:github.com/go-delve/delve/cmd/dlv" = "latest"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 "go:honnef.co/go/tools/cmd/staticcheck" = "latest"
