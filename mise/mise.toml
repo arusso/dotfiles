@@ -38,5 +38,5 @@ starship = "latest"
 taplo = "latest"
 tmux = "latest"
 tree-sitter = "latest"
-upx = { version = "latest", os = ["linux", "macos/arm64"] }
+upx = { version = "latest", os = ["linux"] }
 uv = "latest"
