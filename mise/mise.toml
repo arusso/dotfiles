@@ -34,8 +34,3 @@ taplo = "latest"
 tmux = "latest"
 tree-sitter = "latest"
 uv = "latest"
-
-[tasks.bootstrap]
-run = [
-  "go version",
-]
