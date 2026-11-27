@@ -1,5 +1,4 @@
 # Global mise config, shared by every host (deployed to ~/.config/mise/mise.toml).
-# macOS-only Homebrew packages live in macos.toml.
 [settings]
 idiomatic_version_file_enable_tools = ["go", "python"]
 minimum_release_age = "3d"
@@ -42,3 +41,24 @@ tmux = "latest"
 tree-sitter = "latest"
 upx = { version = "latest", os = ["linux"] }
 uv = "latest"
+
+# Homebrew taps are only a name -> URL lookup, so they are harmless on Linux.
+[bootstrap.brew.taps]
+"securitypedant/octomon" = "https://github.com/securitypedant/homebrew-octomon.git"
+
+# macOS-only Homebrew packages, applied with `mise bootstrap`.
+[bootstrap.packages]
+"brew:ansible-language-server" = { version = "latest", os = ["macos"] }
+"brew:dutree" = { version = "latest", os = ["macos"] }
+"brew:e2fsprogs" = { version = "latest", os = ["macos"] }
+"brew:ffmpeg" = { version = "latest", os = ["macos"] }
+"brew:git-graph" = { version = "latest", os = ["macos"] }
+"brew:mactop" = { version = "latest", os = ["macos"] }
+"brew:mise" = { version = "latest", os = ["macos"] }
+"brew:mtr" = { version = "latest", os = ["macos"] }
+"brew:securitypedant/octomon/octomon" = { version = "latest", os = ["macos"] }
+"brew:podman" = { version = "latest", os = ["macos"] }
+"brew:tree" = { version = "latest", os = ["macos"] }
+"brew-cask:1password-cli" = { version = "latest", os = ["macos"] }
+"brew-cask:cmux" = { version = "latest", os = ["macos"] }
+"brew-cask:font-jetbrains-mono-nerd-font" = { version = "latest", os = ["macos"] }

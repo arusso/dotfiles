@@ -10,8 +10,8 @@ Personal + work dotfiles for **macOS and Enterprise Linux (EL)**, zsh-first with
 
 ```
 mise.toml          dotfile map for `mise dot` (target -> source). Source of truth for deployment.
-mise.<env>.toml    optional overlays, e.g. mise.macos.toml, used with `mise -E <env> dot ...`
-mise/              global mise config: mise.toml (tools, all hosts), macos.toml (brew packages)
+mise.<env>.toml    optional overlays, e.g. mise.work.toml, used with `mise -E <env> dot ...`
+mise/              global mise config: mise.toml (tools, all hosts; macOS-only brew packages use `os = ["macos"]`)
 zsh/               zshrc, d/ (numbered init snippets), func/ (fpath), completion/
 bash/              bashrc, bash_profile, profile, d/ (older/minimal; not the primary shell)
 git/               gitconfig, gitignore, commit-template, git-completion.bash, bin/ (git-* scripts)
@@ -66,7 +66,7 @@ No test suite. Validate by hand:
 
 - Syntax: `zsh -n zsh/d/<file>.sh` for each changed zsh file (don't use `bash -n` on zsh files).
 - Real shell: `TERM=xterm zsh -ic '<check>'`. Note `~/.zshrc` points at the main checkout, so to test a worktree use a throwaway `ZDOTDIR` whose `.zshrc` sets `DOTFILES_DIR` and sources the worktree's `zsh/d/*.sh`.
-- Deployment: `mise -C <repo> -E macos dot apply --dry-run` (drop `-E macos` on Linux). `mise dot` reads `mise.toml` only from the repo dir, hence `-C`.
+- Deployment: `mise -C <repo> dot apply --dry-run`. `mise dot` reads `mise.toml` only from the repo dir, hence `-C`.
 - Linux/EL: test in a throwaway container, e.g. `podman run --rm -v "$PWD":/src:ro,Z rockylinux:9 ...` (install zsh, copy the repo, install mise via `curl https://mise.run | sh`, run `mise dot apply --force`, start a shell). The stock image has no `which`.
 
 ## Gotchas

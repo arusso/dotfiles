@@ -1,3 +1,0 @@
-# macOS overlay: `mise -E macos dot apply`
-[dotfiles]
-"~/.config/mise/conf.d/macos.toml" = { source = "mise/macos.toml" }

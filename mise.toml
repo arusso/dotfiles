@@ -29,7 +29,7 @@
 "~/.config/starship.toml"     = { source = "starship/starship.toml" }
 "~/.config/atuin/config.toml" = { source = "atuin/config.toml" }
 
-# mise itself (shared tools). macOS-only packages are in mise.macos.toml
+# mise itself (shared tools and macOS-only brew packages)
 "~/.config/mise/mise.toml" = { source = "mise/mise.toml" }
 
 # misc
