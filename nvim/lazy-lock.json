@@ -7,7 +7,7 @@
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d" },
   "miser.nvim": { "branch": "main", "commit": "06761dd04e823ec6bcca65f00e5fb2595168fa77" },
-  "nvim-tree.lua": { "branch": "master", "commit": "ba85443ca5fe92290dcc073e0100c1908ddde634" },
+  "nvim-tree.lua": { "branch": "master", "commit": "d0b8d652d3a776a29b09f9c14f87717e455c52f6" },
   "nvim-treesitter": { "branch": "main", "commit": "52773f0d13a0c11d0c3ef33c14ab6ecc1c17148b" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
   "solarized.nvim": { "branch": "main", "commit": "a8085e29883ddcfb39bd46197eb32ef00df05368" },
